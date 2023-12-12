@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Sample">
+
+	<typeAlias alias="egovMap"
+		type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="searchVO"
+		type="egovframework.example.sample.service.SampleDefaultVO" />
+
+
+	<select id="selectUserMoney" resultClass="EgovMap">
+        <![CDATA[
+            SELECT money
+            FROM member
+            WHERE idx = #idx#
+    
+            limit 1
+        ]]>
+	</select>
+	<select id="selectCoinWallet" resultClass="EgovMap">
+        <![CDATA[
+            SELECT btc,eth,xrp
+            FROM member
+            WHERE idx = #idx#
+            limit 1
+        ]]>
+	</select>
+	<select id="adminInfo" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM member
+            WHERE grade=6
+            limit 1
+        ]]>
+	</select>
+	<update id="updateAccount">
+		<![CDATA[
+			UPDATE member
+			SET mbank=#mbank#
+				, maccount=#maccount#
+				, aname=#aname#
+			WHERE midx=#midx#
+		]]>
+	</update>
+	<select id="selectUserDW" resultClass="EgovMap">
+	        <![CDATA[
+	            SELECT *
+	            FROM money
+	            WHERE useridx = #idx# and stat!=99
+	                ]]>
+        	<isNotEmpty property = "kind">
+	        	and money.kind = #kind#
+	        </isNotEmpty>
+        <![CDATA[
+	        ]]>
+		</select>
+		
+		<select id="selectAdminDWList" resultClass="EgovMap">
+	        <![CDATA[
+	            SELECT *
+	            FROM money
+	            left join member m on m.idx = money.useridx 
+	            WHERE 1=1
+	        ]]>
+	          <isNotEmpty property = "kind">
+	        	and money.kind = #kind#
+	        </isNotEmpty>
+	        <isNotEmpty property = "search">
+				<isEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat(#search# , '%')
+				</isEqual>
+				<isNotEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat('%' , #search# , '%')
+				</isNotEqual>
+       		</isNotEmpty> 
+		    <isNotEmpty property = "sdate">
+	        	and date(money.mdate) between #sdate# and #edate# 
+	        </isNotEmpty>
+	        <isNotEmpty property = "stat">
+	        	and stat = #stat#
+	        </isNotEmpty>
+	        <isNotEmpty property="coin">
+				and coin = #coin# 
+			</isNotEmpty>
+		</select>
+		<select id="selectAdminDWListCnt" resultClass="int">
+	        <![CDATA[
+	            SELECT count(*)
+	            FROM money
+	            left join member m on m.idx = money.useridx 
+	            WHERE 1=1
+	            
+	        ]]>
+	        <isNotEmpty property = "kind">
+	        	and money.kind = #kind#
+	        </isNotEmpty>
+	        <isNotEmpty property = "search">
+				<isEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat(#search# , '%')
+				</isEqual>
+				<isNotEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat('%' , #search# , '%')
+				</isNotEqual>
+       		</isNotEmpty> 
+		    <isNotEmpty property = "sdate">
+	        	and date(money.mdate) between #sdate# and #edate# 
+	        </isNotEmpty>
+	        <isNotEmpty property = "stat">
+	        	and money.stat = #stat#
+	        </isNotEmpty>
+	        <isNotEmpty property="coin">
+				and money.coin = #coin# 
+			</isNotEmpty>
+		</select>
+	<insert id="insertWithdrawMoney" parameterClass="EgovMap">
+		<![CDATA[
+			INSERT INTO money
+				( useridx
+				  , kind
+				  , coin
+				  , coinAmount
+				  , toAddress
+				  , mdate
+		]]>
+			  	<isNotEmpty property = "stat">
+	        		,stat
+	        	</isNotEmpty>
+	        	<isNotEmpty property = "memo">
+	        		,memo
+	        	</isNotEmpty>
+	    <![CDATA[
+				  )
+			VALUES ( #useridx#
+				  , #kind#
+				  , #coin#
+				  , #amount#
+				  , #address#
+				  , now()
+				  ]]>
+				  <isNotEmpty property = "stat">
+	        		,#stat#
+	        	</isNotEmpty>
+	        	<isNotEmpty property = "memo">
+	        		,#memo#
+	        	</isNotEmpty>
+		 <![CDATA[
+				  )
+		]]>
+	</insert>
+	<insert id="insertMoney" parameterClass="EgovMap">
+		<![CDATA[
+			INSERT INTO money
+				( useridx
+				  , kind
+				  , money
+				  , mdate
+				  , stat
+				  )
+			VALUES ( #useridx#
+				  , #kind#
+				  , #money#
+				  , now()
+				  , #stat#
+				  )
+		]]>
+		<selectKey keyProperty="idx" resultClass="int">
+	        SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<select id="checktxID" resultClass="EgovMap">
+<![CDATA[
+            SELECT *
+            FROM money
+            WHERE txid=#txID# and stat = 0
+            order by idx desc
+            limit 1
+        ]]>
+	</select>
+
+	<select id="moneyList" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM money
+            WHERE useridx=#midx#
+        ]]>
+		<isNotEmpty property="sDate">
+			<![CDATA[
+			AND mdate >= #sDate#
+		]]>
+		</isNotEmpty>
+		<isNotEmpty property="eDate">
+			<![CDATA[
+			AND mdate <= #eDate#
+		]]>
+		</isNotEmpty>
+        <![CDATA[
+            order by idx desc
+            limit $firstindex$, $recordperpage$
+        ]]>
+	</select>
+	<select id="moneyTotal" resultClass="EgovMap">
+        <![CDATA[
+            SELECT count(*) num
+            FROM money
+            WHERE useridx=#midx#
+        ]]>
+		<isNotEmpty property="sDate">
+		<![CDATA[
+			AND mdate >= 
+			#sDate#
+		]]>
+		</isNotEmpty>
+		<isNotEmpty property="eDate">
+		<![CDATA[
+			AND mdate <= 
+			#eDate#
+		]]>
+		</isNotEmpty>
+	</select>
+
+
+	<select id="getmeminfo" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM member
+            WHERE midx = #useridx#
+        ]]>
+	</select>
+
+	<select id="checkStat" resultClass="EgovMap">
+        <![CDATA[
+            SELECT * 
+            FROM money
+            WHERE stat!=1 and stat!=2 and stat!=99 and useridx=#useridx# and kind=#kind#
+           
+        ]]>
+        <isNotEmpty property="coin">
+        	and coin = #coin#
+        </isNotEmpty>
+        <![CDATA[
+        	limit 1
+         ]]>
+	</select>
+	<select id="moneyCheck" resultClass="EgovMap">
+        <![CDATA[
+            SELECT * 
+            FROM money
+            WHERE 1=1
+           
+        ]]>
+        <isNotEmpty property="idx">
+        	and idx = #idx#
+        </isNotEmpty>
+        <![CDATA[
+        	limit 1
+         ]]>
+	</select>
+	<select id="withdrawApplyCnt" resultClass="EgovMap">
+        <![CDATA[
+            SELECT count(*) num
+            FROM money
+            WHERE useridx=#midx# and kind=#kind# and DATE_FORMAT(mdate2, '%Y-%m-%d')=DATE_FORMAT(now(), '%Y-%m-%d')
+        ]]>
+	</select>
+	
+	<insert id="insertMoneyLog" parameterClass="egovMap">
+		<![CDATA[
+			INSERT INTO moneylog
+				( luseridx
+				  , beforemoney
+				  , aftermoney
+				  , lmoney
+				  , lkind
+				  , ltime
+				  , lforeignidx)
+			VALUES ( #idx#
+				  , #userPoint#
+		]]>
+			<isEqual property="kind" compareValue="+">
+			    , #userPoint# + #money#
+			    , #money#
+			</isEqual>
+			<isEqual property="kind" compareValue="-">
+			    , #userPoint# - #money#
+			    , #money# 
+			</isEqual>
+		<![CDATA[
+				  , #lkind#
+				  , now()
+				  , #adminIdx#)
+		]]>
+	</insert>
+	<insert id="insertPointLog" parameterClass="egovMap">
+		<![CDATA[
+			INSERT INTO pointlog
+				( midx
+				  , bfPoint
+				  , point
+				  , afPoint
+				  , coinTYpe
+				  , pm
+				  , kind
+				  , pdate)
+			VALUES ( #idx#
+				  , #bfPoint#
+				  , #point#
+				  , #afPoint#
+				  , #coinType#
+				  , #pm#
+				  , #kind#
+				  , now())
+		]]>
+	</insert>
+
+	<update id="userMoneyUpdate">
+		<![CDATA[
+			UPDATE member
+			SET mmoney = mmoney - #money# 
+			WHERE midx=#midx#
+		]]>
+	</update>
+	
+	<update id="userCoinWithdrawUpdate">
+		<![CDATA[
+			UPDATE member
+			SET $coin$ = $coin$ -  #amount# 
+			WHERE idx=#useridx#
+		]]>
+	</update>
+	<update id="moneyStatUpdate">
+		<![CDATA[
+			UPDATE money
+			SET stat =  #stat# 
+			WHERE idx=#idx#
+		]]>
+	</update>
+	<update id="userMoneyUpdateKrw">
+		<![CDATA[
+			UPDATE member
+			SET money = #afPoint# 
+			WHERE idx=#idx#
+		]]>
+	</update>
+	
+	<update id="userCoinUpdate">
+		<![CDATA[
+			UPDATE member
+			]]>
+			<isEqual property="kind" compareValue="+">
+			    SET $coin$ = $coin$ +  #amount# 
+			</isEqual>
+			<isEqual property="kind" compareValue="-">
+			    SET $coin$ = $coin$ -  #amount# 
+			</isEqual>
+			<![CDATA[
+			WHERE idx=#idx#
+		]]>
+	</update>
+</sqlMap>
