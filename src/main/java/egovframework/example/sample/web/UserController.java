@@ -19,7 +19,7 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @RequestMapping("/user")
 @Controller
-public class AppUserController {
+public class UserController {
 	@Resource(name = "sampleDAO")
 	private SampleDAO sampleDAO;
 	@RequestMapping(value="/main.do")

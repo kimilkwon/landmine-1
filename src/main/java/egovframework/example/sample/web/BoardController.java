@@ -21,12 +21,12 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @RequestMapping("/user")
 @Controller
-public class AppBoardController {
+public class BoardController {
 	@Resource(name = "sampleDAO")
 	private SampleDAO sampleDAO;
 	
-	@RequestMapping(value="/app_notice.do")
-	public String app_notice(HttpServletRequest request , Model model){
+	@RequestMapping(value="/notice.do")
+	public String notice(HttpServletRequest request , Model model){
 		String pageIndex = request.getParameter("pageIndex");
 		PaginationInfo pi = new PaginationInfo();
 		
@@ -45,14 +45,6 @@ public class AppBoardController {
 		return "board/app_notice";
 	}
 	
-	@RequestMapping(value="/app_notice_detail.do")
-	public String app_notice_detail(HttpServletRequest request , Model model){
-		int idx = Integer.parseInt(""+request.getParameter("idx"));
-		EgovMap info = (EgovMap)sampleDAO.select("selectNoticeDetail", idx);
-		model.addAttribute("text", StringEscapeUtils.unescapeHtml3(""+info.get("text")));
-		model.addAttribute("info", info);
-		return "board/app_notice_detail";
-	}
 
 	@RequestMapping(value="/app_faq.do")
 	public String app_faq(HttpServletRequest request , Model model){

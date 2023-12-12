@@ -27,11 +27,11 @@ color:black;
       <div class="general_content">
         <div class="container">
           <div class="dw_sc">
-            <h2 class="content_title">입금</h2>
+            <h2 class="content_title">출금</h2>
             <div class="dw_box">
-              <h3 class="content_sub">입금(충전)</h3>
+              <h3 class="content_sub">출금(환전)</h3>
               <div class="form-block w-form">
-                <form id="depositForm" name="depositForm" data-name="depositForm" method="get" data-wf-page-id="655c54ced6bfdf04faf4df3e" data-wf-element-id="64bd95e3-62b6-9a73-b361-7c9519ad3170">
+                <form id="initForm" name="initForm" data-name="initForm" method="get" data-wf-page-id="655c54ced6bfdf04faf4df3e" data-wf-element-id="64bd95e3-62b6-9a73-b361-7c9519ad3170">
                   <div class="input_warp2">
                     <div class="input_label2">보유캐쉬</div>
                     <div class="input_dw_warp">
@@ -40,24 +40,11 @@ color:black;
                       </div>
                     </div>
                   </div>
+                 
                   <div class="input_warp2">
-                    <div class="input_label2">입금자명</div>
+                    <div class="input_label2">출금신청금액</div>
                     <div class="input_dw_warp">
-                      <div class="input_txtbox">
-                        <div>${info.mname}</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input_warp2">
-                    <div class="input_label2">입금계좌정보</div>
-                    <div class="input_dw_warp">
-                      <div class="dw_txt">입금전 고객센터로 문의 바랍니다.<br>‍입금완료후 반드시 본 페이지에서 입금신청을 해주세요.<br>‍최소 입금금액 만원 이상부터 가능합니다.</div>
-                    </div>
-                  </div>
-                  <div class="input_warp2">
-                    <div class="input_label2">입금신청금액</div>
-                    <div class="input_dw_warp">
-                    <input type="text" class="input_dw w-input" maxlength="256" name="totalDeposit" data-name="totalDeposit" placeholder="금액 입력" id="totalDeposit" required="" readonly>
+                    <input type="text" class="input_dw w-input" maxlength="256" name="totalWithdrawal" data-name="totalWithdrawal" placeholder="금액 입력" id="totalWithdrawal" required="" readonly>
                       <div class="dw_input_btnarea">
                         <a href="#" money="1000" class="dw_input_btn w-button">1천원</a>
                         <a href="#" money="10000" class="dw_input_btn w-button">1만원</a>
@@ -73,11 +60,11 @@ color:black;
                 </form>
               </div>
               <div class="general_btn_area">
-                <a href="javascript:depositBtn()" class="general_btn w-button">입금(충전) 신청</a>
+                <a href="javascript:withdrawalBtn()" class="general_btn w-button">출금(환전) 신청</a>
               </div>
             </div>
             <div class="dw_box">
-              <h3 class="content_sub">입금(충전) 리스트</h3>
+              <h3 class="content_sub">출금(환전) 리스트</h3>
               <div class="dw_table">
                 <div class="dw_table_top">
                   <div class="dw_tb1">
@@ -133,24 +120,24 @@ $(".dw_input_btn").click(function() {
 	
 	if (money == "-1") {
 		start = 0;
-		$("#totalDeposit").val(0);
+		$("#totalWithdrawal").val(0);
 	} 
 	else {
 		
 		if(start + parseInt(money)>=0){
 			if (totalMoney >= start + parseInt(money)) {
 				start += parseInt(money);
-				$("#totalDeposit").val((start));
+				$("#totalWithdrawal").val((start));
 			}
 		}
 		}
 });
-function depositBtn(){
-	var data = $("#depositForm").serialize();
+function withdrawalBtn(){
+	var data = $("#initForm").serialize();
 	$.ajax({
 		type: 'post',
 		data: data,
-		url:'/landmine/user/depositProcess.do',
+		url:'/landmine/user/withdrawalProcess.do',
 		success: function(data){
 			alert(data.msg);
 			if(data.result == "success"){

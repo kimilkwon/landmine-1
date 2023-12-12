@@ -14,7 +14,7 @@
 		<div class="mobile_box">
 			<div class="app_screen">
 				<div class="app_top">
-					<jsp:include page="../frame/top.jsp"></jsp:include>
+					<jsp:include page="/frame/top.jsp"></jsp:include>
 				</div>
 				<jsp:include page="../frame/footer.jsp"></jsp:include>
 				<div class="app_content">

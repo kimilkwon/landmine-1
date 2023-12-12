@@ -44,16 +44,6 @@
 													</div>
 												</div>
 											</div>
-											<div class="col-lg-1">
-												<label>코인</label> 
-												<select onchange="checkForm()" id="coin" name="coin" class="form-control input-sm">
-													<option value="" <c:if test="${coin eq ''}">selected</c:if>>전체</option>
-													<option value="BTC" <c:if test="${coin eq 'BTC'}">selected</c:if>>BTC</option>
-													<option value="ETH" <c:if test="${coin eq 'ETH'}">selected</c:if>>ETH</option>
-													<option value="XRP" <c:if test="${coin eq 'XRP'}">selected</c:if>>XRP</option>
-													
-												</select>
-											</div>
 											<div class="col-lg-3">
 												<label>검색</label>
 												<div class="form-group input-group">
@@ -61,12 +51,8 @@
 														class="form-control input-sm">
 														<option value="name"
 															<c:if test="${searchSelect eq 'name'}">selected</c:if>>회원명</option>
-														<option value="email"
-															<c:if test="${searchSelect eq 'email'}">selected</c:if>>이메일</option>
-														<option value="inviteCode"
-															<c:if test="${searchSelect eq 'inviteCode'}">selected</c:if>>InviteCode</option>
-														<option value="idx"
-															<c:if test="${searchSelect eq 'idx'}">selected</c:if>>UID</option>
+														<option value="id"
+															<c:if test="${searchSelect eq 'id'}">selected</c:if>>ID</option>
 													</select> <input type="text" name="search" class="form-control"
 														value="${search}" style="width: auto;">
 													<button class="btn btn-default btn-sm"onclick="checkForm()" type="button"><i class="fa fa-search"></i>													</button>
@@ -92,7 +78,7 @@
 												</div>
 											</div>
 											
-											<div class="col-lg-1">
+											<!-- <div class="col-lg-1">
 												<label>정렬</label>
 												<div class="form-group input-group">
 													<span class="input-group-btn">
@@ -102,7 +88,7 @@
 															onclick="setOrder('coinAmount')" type="button">수량</button>
 													</span>
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</form>
 								</div>

@@ -51,12 +51,8 @@
 														class="form-control input-sm">
 														<option value="name"
 															<c:if test="${searchSelect eq 'name'}">selected</c:if>>회원명</option>
-														<option value="email"
-															<c:if test="${searchSelect eq 'email'}">selected</c:if>>이메일</option>
-														<option value="inviteCode"
-															<c:if test="${searchSelect eq 'inviteCode'}">selected</c:if>>InviteCode</option>
-														<option value="idx"
-															<c:if test="${searchSelect eq 'idx'}">selected</c:if>>UID</option>
+														<option value="id"
+															<c:if test="${searchSelect eq 'id'}">selected</c:if>>ID</option>
 													</select> <input type="text" name="search" class="form-control"
 														value="${search}" style="width: auto;">
 													<button class="btn btn-default btn-sm"onclick="checkForm()" type="button"><i class="fa fa-search"></i>													</button>
@@ -82,7 +78,7 @@
 												</div>
 											</div>
 											
-											<div class="col-lg-1">
+											<!-- <div class="col-lg-1">
 												<label>정렬</label>
 												<div class="form-group input-group">
 													<span class="input-group-btn">
@@ -92,7 +88,7 @@
 															onclick="setOrder('coinAmount')" type="button">수량</button>
 													</span>
 												</div>
-											</div>
+											</div> -->
 										</div>
 									</form>
 								</div>

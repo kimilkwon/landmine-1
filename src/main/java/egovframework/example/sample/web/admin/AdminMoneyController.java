@@ -101,24 +101,19 @@ public class AdminMoneyController {
 			
 			EgovMap ed = (EgovMap) sampleDAO.select("selectMemberDetail", in);
 			String stringCoin = moneyCheck.get("coin").toString().toLowerCase();
-			double bfPoint =  Double.parseDouble(ed.get(stringCoin).toString());
-			double amount =  Double.parseDouble(moneyCheck.get("coinAmount").toString());
+			double wallet =  Double.parseDouble(ed.get("money").toString());
+			double inMoney =  Double.parseDouble(moneyCheck.get("money").toString());
 			
 			EgovMap in2 = new EgovMap();
 			in2.put("idx", moneyCheck.get("useridx"));
-			in2.put("afPoint",bfPoint+ amount);
-			in2.put("bfPoint", bfPoint);
-			in2.put("kind", "withdrawNot");
-			in2.put("point", amount);
-			in2.put("coinType", stringCoin);
-			in2.put("pm", "+");
-			sampleDAO.insert("insertPointLog", in2);
-			
-			in.put("idx", moneyCheck.get("useridx"));
-			in.put("amount", moneyCheck.get("coinAmount"));
-			in.put("coin", moneyCheck.get("coin"));
-			in.put("kind", "+");
-			sampleDAO.update("userCoinUpdate",in);
+			in2.put("afPoint",wallet+ inMoney);
+			in2.put("lkind", "withdrawNot");
+			in2.put("kind", "-");
+			in2.put("userPoint", wallet);
+			in2.put("money", inMoney);
+			in2.put("adminIdx", "0");
+			sampleDAO.insert("insertMoneyLog", in2);
+			sampleDAO.update("userMoneyUpdateKrw",in2);
 		}
 		
 		obj.put("result", "success");
@@ -201,8 +196,8 @@ public class AdminMoneyController {
 			sampleDAO.update("userMoneyUpdateKrw", in1);
 			
 			in1.put("lkind", "adminDeposit");
-			in1.put("userPoint", requestMoney);
-			in1.put("money", money);
+			in1.put("userPoint",money );
+			in1.put("money", requestMoney);
 			in1.put("adminIdx", adminIdx);
 			sampleDAO.insert("insertMoneyLog", in1);
 		}
