@@ -32,7 +32,7 @@
 					<div>
 						<span class="point_span">0</span> 원
 					</div>
-					<a href="#" class="logout_btn w-button">로그아웃</a>
+					<a href="/landmine/logout.do" class="logout_btn w-button">로그아웃</a>
 				</div>
 			</c:if>
 			<c:if test="${userIdx eq 'null'}">

@@ -91,9 +91,9 @@
     </bean>
 	<!-- /For Pagination Tag -->
 	
-	<websocket:handlers>
-        <websocket:mapping path="/websocket/echo.do" handler="myHandler"/>
-    </websocket:handlers>
+	<websocket:handlers allowed-origins="localhost:8080,http://localhost:8080,*">
+		<websocket:mapping path="/websocket/echo.do" handler="myHandler" />
+	</websocket:handlers>
     <bean id="myHandler" class="egovframework.example.sample.web.SocketHandler" />
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
 </beans>

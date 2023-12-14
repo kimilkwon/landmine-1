@@ -99,7 +99,7 @@ public class BoardController {
 		pi.setTotalRecordCount((int)sampleDAO.select("selectQnaListCnt", in));
 		model.addAttribute("list", sampleDAO.list("selectQnaList",in));
 		model.addAttribute("pi", pi);
-		return "board/app_qnaList";
+		return "user/qnaList";
 	}
 	@RequestMapping(value="/app_qna_detail.do")
 	public String app_qna_detail(HttpServletRequest request , Model model){

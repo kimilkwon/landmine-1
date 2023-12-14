@@ -100,9 +100,7 @@
 											<th>시간</th>
 											<th>아이디</th>
 											<th>회원명</th>
-											<th>코인명</th>
-											<th>수량</th>
-											<th>주소</th>
+											<th>금액</th>
 											<th>상태</th>
 											<th>액션</th>
 										</tr>
@@ -113,9 +111,7 @@
 												<td><fmt:formatDate value="${item.mdate}" pattern="yyyy-MM-dd"/></td>
 												<td>${item.id}</td>
 												<td>${item.name}</td>
-												<td>${item.coin}</td>
-												<td>${item.coinAmount}</td>
-												<td>${item.toAddress}</td>
+												<td><fmt:formatNumber value="${item.money}" pattern="#,###"/></td>
 												<td>
 													<c:if test="${item.stat eq '0'}"> 대기중</c:if>
 													<c:if test="${item.stat eq '1'}"> 승인</c:if>

@@ -12,7 +12,9 @@
 	<jsp:include page="../frame/page/top.jsp"></jsp:include>
 	<div class="content">
 	<div class="c_section">
-	 <h1 class="h_menu_title"><spring:message code="list.customer" /><span class="h_subtitle"><spring:message code="top.inquiry" /></span></h1>
+	 <h1 class="h_menu_title">
+	 <spring:message code="list.customer" />
+	 <span class="h_subtitle"><spring:message code="top.inquiry" /></span></h1>
 	 <form id="inquryForm" name="inquryForm" method="get">
 		<div class="c_contentblcok">
 			<div class="input_warp">

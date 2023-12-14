@@ -109,7 +109,7 @@ public class MainController {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/logoutProcess.do", produces = "application/json; charset=utf8")
-	public String logout(HttpServletRequest request) throws Exception {
+	public String logoutProcess(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		session.setAttribute("userIdx", null);
 		
@@ -118,6 +118,12 @@ public class MainController {
 		obj.put("level", "1");
 		obj.put("result", "success");
 		return obj.toJSONString();
+	}
+	@RequestMapping(value = "/logout.do", produces = "application/json; charset=utf8")
+	public String logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		session.setAttribute("userIdx", null);
+		return "login";
 	}
 	@RequestMapping(value="/join.do")
 	public String join(HttpServletRequest request , Model model){
