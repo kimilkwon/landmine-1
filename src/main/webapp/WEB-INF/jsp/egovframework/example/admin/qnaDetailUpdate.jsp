@@ -44,13 +44,21 @@
 									<div class="col-lg-3">
 										<div class="form-group">
 											<label>작성자</label> 
-											<pre>${info.name}&nbsp;</pre>
+											<pre>${info.qname}&nbsp;</pre>
 										</div>
 									</div>
 									<div class="col-lg-3">
 										<div class="form-group">
-											<label>이메일</label> 
-											<pre>${info.email}&nbsp;</pre>
+											<label>작성ID</label> 
+											<pre>${info.qid}&nbsp;</pre>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<label>제목</label> 
+											<pre>${info.title}&nbsp;</pre>
 										</div>
 									</div>
 								</div>

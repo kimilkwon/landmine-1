@@ -197,18 +197,12 @@ public class BoardController {
 	@RequestMapping(value="/askInsertProcess.do"  , produces = "application/json; charset=utf8")
 	public String inquryInsertProcess(HttpServletRequest request, Model model){
 		HttpSession session = request.getSession();
-		String name = request.getParameter("name");
-		String email0 = request.getParameter("email0");
-		String email1 = request.getParameter("email1");
 		String text = request.getParameter("text");
+		String title = request.getParameter("title");
 		JSONObject obj = new JSONObject();
 		obj.put("result", "fail");
-		if(Utils.isNull(name)){
-			obj.put("msg", "이름을 입력하세요.");
-			return obj.toJSONString();
-		}
-		if(Utils.isNull(email0) || Utils.isNull(email1)){
-			obj.put("msg", "이메일을 입력하세요.");
+		if(Utils.isNull(title)){
+			obj.put("msg", "제목을 입력하세요.");
 			return obj.toJSONString();
 		}
 		if(Utils.isNull(text)){
@@ -216,9 +210,8 @@ public class BoardController {
 			return obj.toJSONString();
 		}
 		EgovMap in = new EgovMap();
-		in.put("name", name);
-		in.put("email", email0+email1);
 		in.put("text", text);
+		in.put("title", title);
 		in.put("midx", session.getAttribute("userIdx"));
 		sampleDAO.insert("insertAsk", in);
 		obj.put("result", "suc");

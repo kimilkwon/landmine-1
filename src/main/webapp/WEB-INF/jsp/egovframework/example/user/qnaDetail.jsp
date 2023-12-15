@@ -10,32 +10,42 @@
 <jsp:include page="../frame/header.jsp"></jsp:include>
 </head>
 
-<body class="home_body">
+<body class="body">
 	<jsp:include page="../frame/page/top.jsp"></jsp:include>
 	<div class="content">
-		<div class="c_section">
-		 <h1 class="h_menu_title"><spring:message code="list.customer" /><span class="h_subtitle"><spring:message code="top.inquiry" /></span></h1>
-		 <div class="h_detail_title">
-		   <h2 class="h_d_title"><spring:message code="top.inquiry" /></h2>
-		   <div class="c_date">${info.qdate}</div>
-		 </div>
-		<div class="h_d_txtblcok">
-			<div>${text}</div>
-		 </div>
-		 <hr>
-		 <div class="h_detail_title">
-		   <h2 class="h_d_title"><spring:message code="top.inquiry" /><spring:message code="contactus.answerTitle" /></h2>
-		   <div class="c_date">${info.cdate}</div>
-		 </div>
-		<div class="h_d_txtblcok">
-			<c:if test="${info.answer ne null}">
-				<div>${info.answer}</div>
-			</c:if>
-			<c:if test="${info.answer eq null}">
-				<div><spring:message code="contactus.answer" /></div>
-			</c:if>
-		 </div>
-	   </div>
+	<div class="general_content">
+	<div class="container">
+          <div class="custermer_sc">
+            <h2 class="content_title">고객센터</h2>
+            <div class="custermer_title">
+              <h3 class="content_sub">문의내역</h3>
+            </div>
+            <div class="form-block w-form">
+              <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="657a9d282acdd92966f8ecd2" data-wf-element-id="b0f9ba57-3b6e-5dec-1565-8c8330ffbc93" aria-label="Email Form">
+                <div class="q_title">
+                  <div class="q_title_txt">${info.title}<span class="q_date">${info.qdate}</span></div>
+                </div>
+                <div class="q_content">
+                  <div>${info.text}</div>
+                </div>
+                <div class="q_content2">
+                	<c:if test="${info.answer ne null}">
+						<div>답변:${info.answer}</div>
+					</c:if>
+					<c:if test="${info.answer eq null}">
+						<div>답변등록이 되지 않았습니다.</div>
+					</c:if>
+                </div>
+              </form>
+          
+            </div>
+            <div class="custermer_btnarea">
+              <a href="/landmine/user/qnaList.do" class="c_btn w-button">목록</a>
+            </div>
+          </div>
+        </div>
+
+   </div>
    </div>
 	<jsp:include page="../frame/page/footer.jsp"></jsp:include>
 	<jsp:include page="../frame/js.jsp"></jsp:include>

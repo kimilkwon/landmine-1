@@ -37,16 +37,16 @@
 	<insert id="insertAsk">
 		<![CDATA[
 			INSERT INTO qna
-				( name, 
+				( 
 				  midx, 
-				  email,
 				  text,
+				  title,
 				  qdate)
 			VALUES ( 
-				#name#, 
+				
 				#midx#,
-				#email#,
 				#text#, 
+				#title#,
 				now())
 		]]>
 	</insert>
@@ -146,9 +146,10 @@
 	</select>
 	<select id="selectQnaDetail" resultClass="EgovMap">
         <![CDATA[
-            SELECT *
+            SELECT *, m.id qid,m.name qname
             FROM qna
-            where idx = #idx#
+            left join member m on m.idx = qna.midx 
+            where qna.idx = #idx#
         ]]>
 	</select>
 

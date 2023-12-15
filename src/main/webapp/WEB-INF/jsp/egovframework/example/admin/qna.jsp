@@ -27,7 +27,7 @@
 									<thead>
 										<tr>
 											<th>번호</th>
-											<th>이메일</th>
+											<th>제목</th>
 											<th>등록일</th>
 											<th>답변 여부</th>
 										</tr>
@@ -36,7 +36,7 @@
 										<c:forEach var="item" items="${list}">
 											<tr onclick="location.href='/landmine/admin/qnaDetail.do?idx=${item.idx}'" style="cursor:pointer;">
 												<td>${item.idx}</td>
-												<td>${item.email}</td>
+												<td>${item.title}</td>
 												<td><fmt:formatDate value="${item.qdate}" pattern="yyyy-MM-dd"/></td>
 												<td>${item.cdate == null ? 'X' : 'O'}</td>
 											</tr>

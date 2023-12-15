@@ -32,7 +32,7 @@
 				<li><a href="/landmine/admin/member.do"><i class="fa fa-caret-right fa-fw"></i> 회원 목록</a></li>
 				<li><a href="#"><i class="fa fa-caret-right fa-fw"></i> 고객 센터<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="/landmine/admin/notice.do">공지사항</a></li>
+						<!-- <li><a href="/landmine/admin/notice.do">공지사항</a></li> -->
 						<!-- <li><a href="/landmine/admin/faq.do">FAQ</a></li> -->
 						<li><a href="/landmine/admin/qna.do">QNA</a></li>
 					</ul>

@@ -293,8 +293,8 @@ public class AdminBoardController {
 		EgovMap in = new EgovMap();
 		in.put("first", pi.getFirstRecordIndex());
 		in.put("record", pi.getRecordCountPerPage());
-		pi.setTotalRecordCount((int)sampleDAO.select("selectQnaListCnt", in));
-		model.addAttribute("list", sampleDAO.list("selectQnaList",in));
+		pi.setTotalRecordCount((int)sampleDAO.select("selectAdminQnaListCnt", in));
+		model.addAttribute("list", sampleDAO.list("selectAdminQnaList",in));
 		model.addAttribute("pi", pi);
 		return "admin/qna";
 	}

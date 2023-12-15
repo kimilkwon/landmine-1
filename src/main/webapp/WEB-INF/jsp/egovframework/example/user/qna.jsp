@@ -8,47 +8,34 @@
 <meta content="App_Custermer_1on1" property="twitter:title">
 <jsp:include page="../frame/header.jsp"></jsp:include>
 </head>
-<body class="home_body">
+<body class="body">
 	<jsp:include page="../frame/page/top.jsp"></jsp:include>
+	
 	<div class="content">
-	<div class="c_section">
-	 <h1 class="h_menu_title">
-	 <spring:message code="list.customer" />
-	 <span class="h_subtitle"><spring:message code="top.inquiry" /></span></h1>
-	 <form id="inquryForm" name="inquryForm" method="get">
-		<div class="c_contentblcok">
-			<div class="input_warp">
-				<div class="input_title"><spring:message code="contactus.name" /></div>
-				<div class="input_box">
-					<input type="text" class="input w-input" name="name">
-				</div>
-			</div>
-			<div class="input_warp">
-				<div class="input_title"><spring:message code="contactus.email" /></div>
-				<div class="input_selectwarp">
-					<div class="select_box _2">
-						<input type="text" class="input w-input" name="email0">
-					</div>
-					<div class="select_box _2">
-						<select id="field-4" name="email1" class="select-field w-select">
-							<option value=""><spring:message code="contactus.choice" /></option>
-							<option value="@naver.com">naver.com</option>
-							<option value="@hanmail.net">hanmail.net</option>
-							<option value="@nate.com">nate.com</option>
-							<option value="@yahoo.co.kr">yahoo.co.kr</option>
-							<option value="@gmail.com">gmail.com</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<div class="input_warp">
-				<div class="input_title"><spring:message code="contactus.content" /></div>
-				<textarea name="text" class="textarea w-input"></textarea>
-			</div>
-			<a href="#" onclick="insert()" class="system_btn w-button"><spring:message code="contactus.check" /></a>
-		</div>
-	</form>
-   	</div>
+	<div class="general_content">
+        <div class="container">
+          <div class="custermer_sc">
+            <h2 class="content_title">고객센터</h2>
+            <div class="custermer_title">
+              <h3 class="content_sub">문의하기</h3>
+            </div>
+            <div class="form-block w-form">
+              <form id="inquryForm" name="inquryForm" data-name="inquryForm" method="get" data-wf-page-id="657a9af4b11bb7f063a00331" data-wf-element-id="b0f9ba57-3b6e-5dec-1565-8c8330ffbc93" aria-label="Email Form">
+                <div class="q_title">
+                  <div class="q_title_tit">
+                    <div>제목</div>
+                  </div><input type="text" class="q_title_input w-input" maxlength="256" name="title" data-name="Field 2" placeholder="제목을 입력해주세요." id="title" required="">
+                </div>
+                <div class="q_content"><textarea placeholder="내용을 입력해주세요." maxlength="5000" id="text" name="text" data-name="Field" class="q_textarea w-input"></textarea></div>
+              </form>
+            </div>
+            <div class="custermer_btnarea">
+              <a href="javascript:insert()" class="c_btn w-button">문의등록</a>
+              <a href="/landmine/user/qnaList.do" class="c_btn w-button">목록</a>
+            </div>
+          </div>
+        </div>
+      </div>
 	</div>
 	<jsp:include page="../frame/page/footer.jsp"></jsp:include>
 	<jsp:include page="../frame/js.jsp"></jsp:include>
@@ -61,7 +48,10 @@ function insert(){
 		data : $("#inquryForm").serialize(),
 		success : function(data){
 			var msg = "<spring:message code='contactus.qnasucMsg' />";
-			if(data.result == 'suc') alert(msg);
+			if(data.result == 'suc'){
+				alert(msg);
+				location.href='/landmine/user/qnaList.do';
+			}
 			else alert(data.msg);
 		}
 	})

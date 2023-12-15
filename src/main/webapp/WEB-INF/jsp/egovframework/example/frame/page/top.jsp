@@ -17,6 +17,7 @@
 				</div>
 			</div>
 			<a href="/landmine/user/withdrawal.do" class="nav_btn w-button">출금</a>
+			<a href="/landmine/user/qnaList.do" class="nav_btn w-button">문의내역</a>
 			<!--
 			<a href="#" class="nav_btn w-button">공지사항</a>
 			<a href="#" class="nav_btn w-button">고객센터</a>
