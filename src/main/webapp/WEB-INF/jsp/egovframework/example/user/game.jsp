@@ -91,6 +91,9 @@
 	const serverport = '<%=request.getServerPort()%>';
 	let servername = '<%=request.getServerName()%>';
 	
+	console.log("웹소켓1");
+
+	
 	//<-- 퍼블 script
 	
   </script>

@@ -11,24 +11,25 @@ console.log("wsUriToWeb:"+wsUriToWeb);
 let websocketToWeb = null;
 
 function initToWeb() {
-	websocketToWeb = new WebSocket(wsUriToWeb);
-	websocketToWeb.onopen = function(evt) {
-		console.log("웹소켓접속");
-		onOpenToWeb(evt);
-	};
-
-	websocketToWeb.onmessage = function(evt) {
-		onMessageToWeb(evt);
-	};
-
-	websocketToWeb.onerror = function(evt) {
-		onErrorToWeb(evt);
-	};
-
-	websocketToWeb.onclose = function(evt) {
-		console.log("재접속");
-			initToWeb();
-	};
+	console.log("initToWeb");
+//	websocketToWeb = new WebSocket(wsUriToWeb);
+//	websocketToWeb.onopen = function(evt) {
+//		console.log("웹소켓접속");
+//		onOpenToWeb(evt);
+//	};
+//
+//	websocketToWeb.onmessage = function(evt) {
+//		onMessageToWeb(evt);
+//	};
+//
+//	websocketToWeb.onerror = function(evt) {
+//		onErrorToWeb(evt);
+//	};
+//
+//	websocketToWeb.onclose = function(evt) {
+//		console.log("재접속");
+//			initToWeb();
+//	};
 }
 function onOpenToWeb(evt) {
 	chatServerConnecting();

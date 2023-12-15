@@ -2,14 +2,21 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:p="http://www.springframework.org/schema/p"
         xmlns:context="http://www.springframework.org/schema/context"
-        xmlns:websocket="http://www.springframework.org/schema/websocket"
         xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:task="http://www.springframework.org/schema/task"
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
                 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
-                http://www.springframework.org/schema/websocket 
-                http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+                http://www.springframework.org/schema/websocket
+                http://www.springframework.org/schema/websocket/spring-websocket.xsd"
+       	xmlns:websocket="http://www.springframework.org/schema/websocket">
 
+	<websocket:handlers allowed-origins="localhost:8080,http://localhost:8080,*">
+		<websocket:mapping path="/websocket/echo.do" handler="myHandler" />
+	</websocket:handlers>
+	<bean id="myHandler" class="egovframework.example.sample.web.SocketHandler" /> <!-- 게임 서버로 변경해줘야함 -->
+	
     <context:component-scan base-package="egovframework">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
@@ -91,9 +98,5 @@
     </bean>
 	<!-- /For Pagination Tag -->
 	
-	<websocket:handlers allowed-origins="localhost:8080,http://localhost:8080,*">
-		<websocket:mapping path="/websocket/echo.do" handler="myHandler" />
-	</websocket:handlers>
-    <bean id="myHandler" class="egovframework.example.sample.web.SocketHandler" />
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
 </beans>
