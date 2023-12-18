@@ -40,14 +40,14 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 		session.setAttribute("topTitle", null);
 		if (urlArr[2].equals("admin")) {
 			if (session.getAttribute("adminIdx") == null) {
-				response.sendRedirect("/landmine/admin/login.do");
+				response.sendRedirect("/spgame/admin/login.do");
 				return false;
 			}
 		}else if (urlArr[2].equals("user")) {
 			if (session.getAttribute("userIdx") == null) {
 				// 나중에 가입하라는 페이지로 이동시킬예정 \
 				if(!urlArr[3].equals("main.do"))
-					response.sendRedirect("/landmine/user/main.do");
+					response.sendRedirect("/spgame/user/main.do");
 				else
 					return true;
 				return false;

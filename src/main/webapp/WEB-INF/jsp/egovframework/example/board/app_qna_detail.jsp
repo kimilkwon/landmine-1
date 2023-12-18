@@ -13,7 +13,7 @@
 
 <body class="app_body">
 	<div class="app_section">
-		<div class="app_logo"><img src="/landmine/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/landmine/webflow/images/logo_shadow_black-p-500.png 500w, /landmine/webflow/images/logo_shadow_black-p-800.png 800w, /landmine/webflow/images/logo_shadow_black-p-1080.png 1080w, /landmine/webflow/images/logo_shadow_black-p-1600.png 1600w, /landmine/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
+		<div class="app_logo"><img src="/spgame/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/spgame/webflow/images/logo_shadow_black-p-500.png 500w, /spgame/webflow/images/logo_shadow_black-p-800.png 800w, /spgame/webflow/images/logo_shadow_black-p-1080.png 1080w, /spgame/webflow/images/logo_shadow_black-p-1600.png 1600w, /spgame/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
 		<div class="mobile_box">
 			<div class="app_screen">
 				<div class="app_top">

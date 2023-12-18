@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Sample">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
+	
+	<insert id="insertBetlog">
+		<![CDATA[
+			INSERT INTO betlog
+				( midx
+				  , mineSet	
+				  , betMoney
+				  , bdate)
+			]]>
+		<![CDATA[
+			VALUES ( #midx#
+				  , #mineSet#
+				  , #betMoney#
+				  , now())
+			]]>
+		<selectKey keyProperty="idx" resultClass="Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateBetlog">
+		<![CDATA[
+			UPDATE betlog
+			SET result = #result#, resultMoney = #resultMoney#, endDate = now()
+			WHERE midx=#midx# and idx=#betIdx#
+		]]>
+	</update>
+	<update id="updateBetlogEndGame">
+		<![CDATA[
+			UPDATE betlog
+			SET result ='exit'
+			, resultMoney = 0
+			, endDate = now()
+			WHERE midx=#midx# and result IS NULL
+			LIMIT 1;
+		]]>
+	</update>
+	<update id="updateBetlogAdminBoom">
+		<![CDATA[
+			UPDATE betlog
+			SET result ='adminBoom'
+			, resultMoney = 0
+			, endDate = now()
+			WHERE midx=#midx# and idx=#betIdx#
+			LIMIT 1;
+		]]>
+	</update>
+	<select id="selectAdminBetlog" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *, betlog.idx betIdx
+            FROM betlog
+            left join member m on m.idx = betlog.midx 
+            where result IS NULL
+        ]]>
+     </select>
+     <select id="selectBetlogBoxCheck" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM betlog
+           	WHERE midx=#midx# and idx=#betIdx#
+        ]]>
+     </select>
+     <select id="selectAdminBetlogList" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM betlog
+            left join member m on m.idx = betlog.midx 
+            where 1=1
+        ]]>
+        	<isNotEmpty property = "result">
+	        	and betlog.result = #result#
+	        </isNotEmpty>
+	        <isNotEmpty property = "search">
+				<isEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat(#search# , '%')
+				</isEqual>
+				<isNotEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat('%' , #search# , '%')
+				</isNotEqual>
+       		</isNotEmpty> 
+		    <isNotEmpty property = "sdate">
+	        	and date(betlog.bdate) between #sdate# and #edate# 
+	        </isNotEmpty>
+	         <![CDATA[
+	         order by bdate desc
+            	limit #first# , #record#
+             ]]>
+     </select>
+     <select id="selectAdminBetlogListCnt" resultClass="int">
+	        <![CDATA[
+	            SELECT count(*)
+	            FROM betlog
+            left join member m on m.idx = betlog.midx 
+            where 1=1
+        ]]>
+        	<isNotEmpty property = "result">
+	        	and betlog.result = #result#
+	        </isNotEmpty>
+	        <isNotEmpty property = "search">
+				<isEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat(#search# , '%')
+				</isEqual>
+				<isNotEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat('%' , #search# , '%')
+				</isNotEqual>
+       		</isNotEmpty> 
+		    <isNotEmpty property = "sdate">
+	        	and date(betlog.bdate) between #sdate# and #edate# 
+	        </isNotEmpty>
+       </select>
+       
+       <select id="selectUserBetlogList" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM betlog
+            left join member m on m.idx = betlog.midx 
+            where betlog.midx = #idx#
+        ]]>
+        	<isNotEmpty property = "result">
+	        	and betlog.result = #result#
+	        </isNotEmpty>
+	        <isNotEmpty property = "search">
+				<isEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat(#search# , '%')
+				</isEqual>
+				<isNotEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat('%' , #search# , '%')
+				</isNotEqual>
+       		</isNotEmpty> 
+		    <isNotEmpty property = "sdate">
+	        	and date(betlog.bdate) between #sdate# and #edate# 
+	        </isNotEmpty>
+	         <![CDATA[
+	         order by bdate desc
+            	limit #first# , #record#
+             ]]>
+     </select>
+     <select id="selectUserBetlogListCnt" resultClass="int">
+	        <![CDATA[
+	            SELECT count(*)
+	            FROM betlog
+            left join member m on m.idx = betlog.midx 
+             where betlog.midx = #idx#
+        ]]>
+        	<isNotEmpty property = "result">
+	        	and betlog.result = #result#
+	        </isNotEmpty>
+	        <isNotEmpty property = "search">
+				<isEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat(#search# , '%')
+				</isEqual>
+				<isNotEqual property="searchSelect" compareValue="m.idx">
+				    and $searchSelect$ like concat('%' , #search# , '%')
+				</isNotEqual>
+       		</isNotEmpty> 
+		    <isNotEmpty property = "sdate">
+	        	and date(betlog.bdate) between #sdate# and #edate# 
+	        </isNotEmpty>
+       </select>
+     
+</sqlMap>

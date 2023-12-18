@@ -82,7 +82,7 @@
 						</div>
 						<br>
 						<button type="button" onclick="javascript:sendAnswer()" class="btn btn-warning">수정</button>
-						<button type="button" onclick="location.href='/landmine/admin/qna.do'" class="btn btn-primary">목록</button>
+						<button type="button" onclick="location.href='/spgame/admin/qna.do'" class="btn btn-primary">목록</button>
 					</div>
 				</div>
 			</div>
@@ -94,7 +94,7 @@
 <script>
 function sendAnswer(){
 	var data = $("#updateForm").serialize();
-	var url = "/landmine/admin/qnaAnswer.do";
+	var url = "/spgame/admin/qnaAnswer.do";
 	$.ajax({
 		type:'post',
 		url : url,
@@ -103,7 +103,7 @@ function sendAnswer(){
 			console.log('ajax success');
 			if(data.result == 'success'){
 				alert("답변  완료되었습니다.");
-				location.href = '/landmine/admin/qna.do';
+				location.href = '/spgame/admin/qna.do';
 			}else{
 				alert(data.msg);
 				location.reload();

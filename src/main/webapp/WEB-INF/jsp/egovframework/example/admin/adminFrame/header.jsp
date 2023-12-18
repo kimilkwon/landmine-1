@@ -6,17 +6,64 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>landmine</title>
-
+<title>GoldSeven</title>
+<link href="/spgame/webflow/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+<link href="/spgame/webflow/images/webclip.png" rel="apple-touch-icon">
 <!-- Bootstrap Core CSS -->
-<link href="/landmine/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/spgame/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
-<link href="/landmine/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+<link href="/spgame/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="/landmine/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="/spgame/dist/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Custom Fonts -->
-<link href="/landmine/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/spgame/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+body {
+    background-color: #F8F8D8;
+    border-color: #f0ee4e;
+}
+.panel-default>.panel-heading {
+    background-color: #f0ad4e;
+     border-color: #f0ee4e;
+}
+.panel-body {
+    background-color: #f0ad4ea6;
+     border-color: #f0ee4e;
+}
+.panel-default {
+    border-color: #f0ee4e;
+}
+.navbar-default {
+    background-color: #f3c87e;
+    border-color: #104257;
+}
+.sidebar ul li a.active {
+    background-color: #d5a526;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #d5a526;
+}
+form {
+    border-color: #e7e7e7;
+}
+.table {
+ 	border-color: #f0ee4e;
+}
+.table-bordered {
+	border-color: #f0ee4e;
+}
+.panel {
+    background-color: #f0ad4ea6;
+     border-color: #f0ee4e;
+    }
+#page-wrapper {
+	 background-color: #F8F8D8;
+}
+.tbody{
+border-color:#f0ee4e
+}
+</style>

@@ -86,7 +86,7 @@
                 //아작스로 폰번호 가진 사람 조회
                 jQuery.ajax({
                     type:"POST",
-                    url :"/landmine/verificationPhone.do?phone=" +mobile,
+                    url :"/spgame/verificationPhone.do?phone=" +mobile,
                     dataType:"json",
                     success : function(data) {
                     	if(data.result == "success"){

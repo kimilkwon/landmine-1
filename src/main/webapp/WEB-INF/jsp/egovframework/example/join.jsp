@@ -106,7 +106,7 @@
                   </div>
                 </form>
                 <div class="lr_linkarea">
-                <div>이미 회원가입을 하셨나요? <a href="/landmine/login" class="login_link">로그인</a>
+                <div>이미 회원가입을 하셨나요? <a href="/spgame/login" class="login_link">로그인</a>
                 </div>
               </div>
                <a href="javascript:join()" class="lr_btn w-button">회원가입</a>
@@ -132,7 +132,7 @@
 			data : {
 				'id' : $("#id").val()
 			},
-			url : '/landmine/checkId.do',
+			url : '/spgame/checkId.do',
 			success : function(data) {
 				alert(data.msg);
 				if (data.result == 'success') {
@@ -150,7 +150,7 @@
 			data : {
 				'phone' : $("#phone").val()
 			},
-			url : '/landmine/checkPhone.do',
+			url : '/spgame/checkPhone.do',
 			success : function(data) {
 				alert(data.msg);
 				
@@ -163,7 +163,7 @@
 			data : {
 				'nickname' : $("#nickName").val()
 			},
-			url : '/landmine/checkNickName.do',
+			url : '/spgame/checkNickName.do',
 			success : function(data) {
 				alert(data.msg);
 				if (data.result == 'success') {
@@ -206,12 +206,12 @@
 		$.ajax({
 			type : 'post',
 			data : data,
-			url : '/landmine/joinProcess.do',
+			url : '/spgame/joinProcess.do',
 			success : function(data) {
 				joining = false;
 				alert(data.msg);
 				if (data.result == 'success') {
-					location.href = "/landmine/login.do";
+					location.href = "/spgame/login.do";
 				}
 			}
 		})

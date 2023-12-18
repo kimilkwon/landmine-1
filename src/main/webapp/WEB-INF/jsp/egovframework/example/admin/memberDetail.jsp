@@ -107,7 +107,7 @@
 								
 							
 					
-						<button type="button" onclick="location.href='/landmine/admin/member.do'" class="btn btn-primary">목록</button>
+						<button type="button" onclick="location.href='/spgame/admin/member.do'" class="btn btn-primary">목록</button>
 					</div>
 				</div>
 			</div>
@@ -132,7 +132,7 @@ function updateUser(idx , stat){
 	$.ajax({
 		type:'post',
 		data:{"idx" : idx , "stat" : stat },
-		url:'/landmine/admin/updateUser.do',
+		url:'/spgame/admin/updateUser.do',
 		dataType:'json',
 		success:function(data){
 			alert(data.msg);
@@ -150,7 +150,7 @@ function updateLockupDate(idx){
 	$.ajax({
 		type:'post',
 		data:{"idx" : idx , "sdate" : sdate },
-		url:'/landmine/admin/updateLockupDate.do',
+		url:'/spgame/admin/updateLockupDate.do',
 		dataType:'json',
 		success:function(data){
 			alert(data.msg);
@@ -168,7 +168,7 @@ function updateLockUpNotSet(idx , coin){
 	$.ajax({
 		type:'post',
 		data:{"idx" : idx , "coin" : coin },
-		url:'/landmine/admin/updateCoinLockupSet.do',
+		url:'/spgame/admin/updateCoinLockupSet.do',
 		dataType:'json',
 		success:function(data){
 			alert(data.msg);
@@ -196,7 +196,7 @@ function updatePoint(idx , kind,coin){
 	$.ajax({
 		type:'post',
 		data:{"idx" : idx , "kind" : kind , "point" : point,"coin":coin,"memo":memo},
-		url:'/landmine/admin/updatePoint.do',
+		url:'/spgame/admin/updatePoint.do',
 		dataType:'json',
 		success:function(data){
 			alert(data.msg);
@@ -223,7 +223,7 @@ function updatePointKRW(idx , kind){
 	$.ajax({
 		type:'post',
 		data:{"idx" : idx , "kind" : kind , "point" : pointKRW},
-		url:'/landmine/admin/updatePointKRW.do',
+		url:'/spgame/admin/updatePointKRW.do',
 		dataType:'json',
 		success:function(data){
 			alert(data.msg);
@@ -245,7 +245,7 @@ function updateUserInfo(){
 	$.ajax({
 		type:'post',
 		data:{"idx" : idx , "id" : id , "name" : name, "pw":pw,"walletpw":walletpw},
-		url:'/landmine/admin/updateUserUpdate.do',
+		url:'/spgame/admin/updateUserUpdate.do',
 		dataType:'json',
 		success:function(data){
 			alert(data.msg);
@@ -266,12 +266,12 @@ function updateUserRemove(){
 	$.ajax({
 		type:'post',
 		data:{"idx" : idx },
-		url:'/landmine/admin/updateUserRemove.do',
+		url:'/spgame/admin/updateUserRemove.do',
 		dataType:'json',
 		success:function(data){
 			alert(data.msg);
 			if(data.result == 'success'){
-				location.href='/landmine/admin/member.do';
+				location.href='/spgame/admin/member.do';
 			}
 
 		},

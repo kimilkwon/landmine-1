@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <div class="ap_b_block">
-	<div class="ap_b_btn _home" onclick="location.href='/landmine/user/app_mypage.do'" style="cursor:pointer;">
+	<div class="ap_b_btn _home" onclick="location.href='/spgame/user/app_mypage.do'" style="cursor:pointer;">
 		<div class="ap_b_btn_icon w-embed">
 			<?xml version="1.0" encoding="UTF-8"?>
 			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 20 20">
@@ -20,7 +20,7 @@
 		</div>
 		<div><spring:message code="appbottom.home" /></div>
 	</div>
-	<div class="ap_b_btn _wallet" onclick="location.href='/landmine/user/app_mypage_list.do?coin=krw'" style="cursor:pointer;">
+	<div class="ap_b_btn _wallet" onclick="location.href='/spgame/user/app_mypage_list.do?coin=krw'" style="cursor:pointer;">
 		<div class="ap_b_btn_icon w-embed">
 			<?xml version="1.0" encoding="UTF-8"?>
 			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 22.86 20">
@@ -39,7 +39,7 @@
 		</div>
 		<div><spring:message code="appbottom.Wallet" /></div>
 	</div>
-	<div class="ap_b_btn _lockup" onclick="location.href='/landmine/user/app_lockup.do'" style="cursor:pointer;">
+	<div class="ap_b_btn _lockup" onclick="location.href='/spgame/user/app_lockup.do'" style="cursor:pointer;">
 		<div class="ap_b_btn_icon w-embed">
 			<?xml version="1.0" encoding="utf-8"?>
 			<!--  Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)   -->

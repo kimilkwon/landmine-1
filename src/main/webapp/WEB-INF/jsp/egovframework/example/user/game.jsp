@@ -51,7 +51,7 @@
                 <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="6552cea403b55036cfb448a7" data-wf-element-id="a76e4f6a-d317-24b7-2225-5b5217999878">
                   <div class="bet_input_warp1">
                   <input type="text" class="bet_input w-input" maxlength="256" id="betMoney" name="field" data-name="Field" id="field" required="" >
-                    <a href="javascript:gameStart()" class="bet_input_btn w-button">시작</a>
+                    <a href="javascript:doSendGameStart()" class="bet_input_btn w-button">시작</a>
                   </div>
                   <div class="bet_count_btnwarp">
                     <a href="#" class="bet_count_btn w-button" count="1">1</a>
@@ -87,16 +87,18 @@
 
   <script>
   	const useridx = Number("${userIdx}");
+  	var token = "";
+  	var isGameSend = false;
 	console.log("useridx"+useridx);
 	const serverport = '<%=request.getServerPort()%>';
 	let servername = '<%=request.getServerName()%>';
 	
 	console.log("웹소켓1");
 
-	
 	//<-- 퍼블 script
 	
   </script>
-  <script src="../js/game.js?v=2" type="text/javascript"></script>
-  <script src="../js/gameServer.js?v=17" type="text/javascript"></script>
+ 
+  <script src="../js/gameServer.js?v=19" type="text/javascript"></script>
+   <script src="../js/game.js?v=14" type="text/javascript"></script>
 </html>

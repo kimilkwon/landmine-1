@@ -26,7 +26,7 @@
 			<i class="fa fa-caret-down"></i>
 		</a>
 		<ul class="dropdown-menu dropdown-user">
-			<li><a href="/landmine/admin/logout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+			<li><a href="/spgame/admin/logout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
 		</ul> <!-- /.dropdown-user -->
 	</li>
 	<!-- /.dropdown -->
@@ -36,14 +36,14 @@
 <div class="navbar-default sidebar" role="navigation">
 	<div class="sidebar-nav navbar-collapse">
 		<ul class="nav" id="side-menu">
-			<li><a href="/landmine/admin/staff.do"><i class="fa fa-caret-right fa-fw"></i> 직원 관리</a></li>
-			<li><a href="/landmine/admin/game.do"><i class="fa fa-caret-right fa-fw"></i> 게임 관리</a></li>
-			<li><a href="/landmine/admin/menu.do"><i class="fa fa-caret-right fa-fw"></i> 메뉴 관리</a></li>
-			<li><a href="/landmine/admin/calculate.do"><i class="fa fa-caret-right fa-fw"></i> 정산 관리</a></li>
+			<li><a href="/spgame/admin/staff.do"><i class="fa fa-caret-right fa-fw"></i> 직원 관리</a></li>
+			<li><a href="/spgame/admin/game.do"><i class="fa fa-caret-right fa-fw"></i> 게임 관리</a></li>
+			<li><a href="/spgame/admin/menu.do"><i class="fa fa-caret-right fa-fw"></i> 메뉴 관리</a></li>
+			<li><a href="/spgame/admin/calculate.do"><i class="fa fa-caret-right fa-fw"></i> 정산 관리</a></li>
 			<li><a href="#"><i class="fa fa-caret-right fa-fw"></i> 고객 센터<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
-					<li><a href="/landmine/admin/notice.do">공지사항</a></li>
-					<li><a href="/landmine/admin/customerOpinion.do">고객의견</a></li>
+					<li><a href="/spgame/admin/notice.do">공지사항</a></li>
+					<li><a href="/spgame/admin/customerOpinion.do">고객의견</a></li>
 				</ul>
 			</li>
 		</ul>

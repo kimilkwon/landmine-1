@@ -10,7 +10,7 @@
 </head>
 <body class="app_body">
 	<div class="app_section">
-		<div class="app_logo"><img src="/landmine/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/landmine/webflow/images/logo_shadow_black-p-500.png 500w, /landmine/webflow/images/logo_shadow_black-p-800.png 800w, /landmine/webflow/images/logo_shadow_black-p-1080.png 1080w, /landmine/webflow/images/logo_shadow_black-p-1600.png 1600w, /landmine/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
+		<div class="app_logo"><img src="/spgame/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/spgame/webflow/images/logo_shadow_black-p-500.png 500w, /spgame/webflow/images/logo_shadow_black-p-800.png 800w, /spgame/webflow/images/logo_shadow_black-p-1080.png 1080w, /spgame/webflow/images/logo_shadow_black-p-1600.png 1600w, /spgame/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
 		<div class="mobile_box">
 			<div class="app_screen">
 				<div class="app_top">
@@ -63,9 +63,9 @@
 							<form id="email-form-2" name="email-form-2" data-name="Email Form 2" method="get">
 								<div class="pop_content _2">
 									<div class="pop_exsit" onclick="popupOff()">
-										<img src="/landmine/webflow/images/wx_black.png" loading="lazy" sizes="100vw" srcset="/landmine/webflow/images/wx_black-p-500.png 500w, /landmine/webflow/images/wx_black-p-800.png 800w, /landmine/webflow/images/wx_black-p-1080.png 1080w, /landmine/webflow/images/wx_black.png 1600w" alt="" class="pop_exsit_img">
+										<img src="/spgame/webflow/images/wx_black.png" loading="lazy" sizes="100vw" srcset="/spgame/webflow/images/wx_black-p-500.png 500w, /spgame/webflow/images/wx_black-p-800.png 800w, /spgame/webflow/images/wx_black-p-1080.png 1080w, /spgame/webflow/images/wx_black.png 1600w" alt="" class="pop_exsit_img">
 									</div>
-									<img src="/landmine/webflow/images/FEW-05.png" loading="lazy" alt=""
+									<img src="/spgame/webflow/images/FEW-05.png" loading="lazy" alt=""
 										class="pop_img">
 									<div><spring:message code="contactus.qnasucMsg" /></div>
 									<div class="s_warn">
@@ -88,7 +88,7 @@
 function insert(){
 	$.ajax({
 		type : 'post',
-		url : '/landmine/user/askInsertProcess.do',
+		url : '/spgame/user/askInsertProcess.do',
 		data : $("#inquryForm").serialize(),
 		success : function(data){
 			if(data.result == 'suc') $(".ap_complete_pop").css('display','flex');

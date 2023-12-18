@@ -22,25 +22,33 @@
 				<i class="fa fa-caret-down"></i>
 			</a>
 			<ul class="dropdown-menu dropdown-user">
-				<li><a href="/landmine/admin/logout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+				<li><a href="/spgame/admin/logout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
 			</ul>
 		</li>
 	</ul>
 	<div class="navbar-default sidebar" role="navigation">
 		<div class="sidebar-nav navbar-collapse">
 			<ul class="nav" id="side-menu">
-				<li><a href="/landmine/admin/member.do"><i class="fa fa-caret-right fa-fw"></i> 회원 목록</a></li>
+				<li><a href="/spgame/admin/member.do"><i class="fa fa-caret-right fa-fw"></i> 회원 목록</a></li>
 				<li><a href="#"><i class="fa fa-caret-right fa-fw"></i> 고객 센터<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<!-- <li><a href="/landmine/admin/notice.do">공지사항</a></li> -->
-						<!-- <li><a href="/landmine/admin/faq.do">FAQ</a></li> -->
-						<li><a href="/landmine/admin/qna.do">QNA</a></li>
+						<li><a href="/spgame/admin/notice.do">공지사항</a></li>
+						<!-- <li><a href="/spgame/admin/notice.do">공지사항</a></li> -->
+						<!-- <li><a href="/spgame/admin/faq.do">FAQ</a></li> -->
+						<li><a href="/spgame/admin/qna.do">QNA</a></li>
+					</ul>
+				</li>
+				<li><a href="#"><i class="fa fa-caret-right fa-fw"></i> 게임<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level">
+						<!-- <li><a href="/spgame/admin/faq.do">FAQ</a></li> -->
+						<li><a href="/spgame/admin/gameList.do">진행중인 게임 리스트</a></li>
+						<li><a href="/spgame/admin/betList.do">배팅내역</a></li>
 					</ul>
 				</li>
 				<li><a href="#"><i class="fa fa-caret-right fa-fw"></i> 입출금<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
-						<li><a href="/landmine/admin/depositList.do">입금 신청</a></li>
-						<li><a href="/landmine/admin/withdrawList.do">출금 신청</a></li>
+						<li><a href="/spgame/admin/depositList.do">입금 신청</a></li>
+						<li><a href="/spgame/admin/withdrawList.do">출금 신청</a></li>
 					</ul>
 				</li> 
 			</ul>

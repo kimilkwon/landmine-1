@@ -24,7 +24,7 @@ public class AdminLoginController {
 	@Resource(name = "sampleDAO")
 	private SampleDAO sampleDAO;
 
-	@RequestMapping(value="/login.do")
+	@RequestMapping(value="/adsqwepmcvsdb.do")
 	public String login(){
 		return "admin/login";
 	}

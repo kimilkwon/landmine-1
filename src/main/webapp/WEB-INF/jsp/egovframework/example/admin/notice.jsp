@@ -33,7 +33,7 @@
 									</thead>
 									<tbody>
 										<c:forEach var="item" items="${list}">
-											<tr onclick="location.href='/landmine/admin/noticeDetail.do?idx=${item.idx}'" style="cursor:pointer;">
+											<tr onclick="location.href='/spgame/admin/noticeDetail.do?idx=${item.idx}'" style="cursor:pointer;">
 												<td>${item.idx}</td>
 												<td>${item.title}</td>
 												<td><fmt:formatDate value="${item.ndate}" pattern="yyyy-MM-dd"/></td>
@@ -42,9 +42,9 @@
 									</tbody>
 								</table>
 							</div>
-							<a href="/landmine/admin/noticeInsert.do" class="btn btn-primary">등록</a>
+							<a href="/spgame/admin/noticeInsert.do" class="btn btn-primary">등록</a>
 						</div>
-					<form name="listForm" action="/landmine/admin/notice.do">
+					<form name="listForm" action="/spgame/admin/notice.do">
 						<input type="hidden" name="pageIndex"/>
 					</form>
 			        <div class="row">

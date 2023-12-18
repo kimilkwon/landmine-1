@@ -611,7 +611,7 @@ c. 그 외에 손해 발생에 있어서 회원의 고의나 과실이 있는 �
 		       	 <div class="general_popbox">
 		            <div class="form-block w-form">
 		                <div class="pop_content _2">
-		                  <div class="pop_exsit"><img src="/landmine/webflow/images/wx_black.png" loading="lazy" sizes="100vw" srcset="/landmine/webflow/images/wx_black-p-500.png 500w, /landmine/webflow/images/wx_black-p-800.png 800w, /landmine/webflow/images/wx_black-p-1080.png 1080w, /landmine/webflow/images/wx_black.png 1600w" alt="" class="pop_exsit_img"></div><img src="/landmine/webflow/images/FWEFGWEG-12.png" loading="lazy" alt="" class="pop_img">
+		                  <div class="pop_exsit"><img src="/spgame/webflow/images/wx_black.png" loading="lazy" sizes="100vw" srcset="/spgame/webflow/images/wx_black-p-500.png 500w, /spgame/webflow/images/wx_black-p-800.png 800w, /spgame/webflow/images/wx_black-p-1080.png 1080w, /spgame/webflow/images/wx_black.png 1600w" alt="" class="pop_exsit_img"></div><img src="/spgame/webflow/images/FWEFGWEG-12.png" loading="lazy" alt="" class="pop_img">
 		                  <div class="pop_title1"><spring:message code="notification" /></div>
 		                  <div class="s_warn"><spring:message code="lockupMsg" /></div>
 		                </div>
@@ -634,6 +634,6 @@ function popupClose(){
 }
 function popupLockUpClose(){
 	$(".ap_terms_pop").hide(); 
-	location.href='/landmine/user/app_lockup.do';
+	location.href='/spgame/user/app_lockup.do';
 }
 </script>

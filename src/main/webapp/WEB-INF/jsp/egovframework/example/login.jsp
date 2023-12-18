@@ -41,7 +41,7 @@
                 </form>
               </div>
               <div class="lr_linkarea">
-                <div>계정이 필요하신가요? <a href="/landmine/join" class="login_link">회원가입</a>
+                <div>계정이 필요하신가요? <a href="/spgame/join" class="login_link">회원가입</a>
                 </div>
               </div>
               <a href="javascript:login()" class="lr_btn w-button">로그인</a>
@@ -64,13 +64,13 @@
 		$.ajax({
 			type : 'post',
 			data : formData,
-			url : '/landmine/loginProcess.do',
+			url : '/spgame/loginProcess.do',
 		 	contentType: false,
 		 	processData: false,				
 			success : function(data) {
 				if (data.result == 'success') {
 					alert(data.msg);
-					location.href = "/landmine/user/main.do";
+					location.href = "/spgame/user/main.do";
 				} else {
 					console.log(data.msg);
 					alert(data.msg);

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="/landmine/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/spgame/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <jsp:include page="adminFrame/header.jsp"></jsp:include>
 </head>
 <body>
@@ -47,7 +47,7 @@
 							</form>
 						</div>
 						<br>
-						<button type="button" onclick="location.href='/landmine/admin/noticeDetail.do?idx=${info.idx}'" class="btn btn-primary">뒤로</button>
+						<button type="button" onclick="location.href='/spgame/admin/noticeDetail.do?idx=${info.idx}'" class="btn btn-primary">뒤로</button>
 						<button type="button" onclick="updateNotice()" class="btn btn-success">수정</button>
 					</div>
 				</div>
@@ -75,11 +75,11 @@ function updateNotice(){
 	oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD",[]);
 	$.ajax({
 		type : 'post',
-		url : '/landmine/admin/noticeUpdateProcess.do',
+		url : '/spgame/admin/noticeUpdateProcess.do',
 		data : $("#noticeForm").serialize(),
 		success : function(data){
 			alert(data.msg);
-			if(data.result == 'suc')location.href='/landmine/admin/noticeDetail.do?idx=${info.idx}';
+			if(data.result == 'suc')location.href='/spgame/admin/noticeDetail.do?idx=${info.idx}';
 		}
 	})
 }

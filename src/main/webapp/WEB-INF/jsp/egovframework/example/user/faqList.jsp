@@ -28,7 +28,7 @@
         <div class="h_listarea">
          <c:forEach var="item" items="${list}">
           	<div class="h_list">
-					<div class="h_list1" onclick="location.href='/landmine/user/faqDetail.do?idx=${item.idx}'" style="cursor:pointer;">
+					<div class="h_list1" onclick="location.href='/spgame/user/faqDetail.do?idx=${item.idx}'" style="cursor:pointer;">
 							 ${item.title}
 					</div>
 					<div class="h_list2">
@@ -39,7 +39,7 @@
           
         </div>
       </div>
-      <form name="listForm" action="/landmine/user/faqList.do">
+      <form name="listForm" action="/spgame/user/faqList.do">
         <input type="hidden" name="pageIndex"/>
       </form>
       <div class="h_page">

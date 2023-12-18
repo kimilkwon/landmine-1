@@ -32,21 +32,21 @@
 	<bean id="accessAuthorityInterceptor" class="egovframework.example.sample.web.util.AccessInterceptor">  
 	  <property name="urls">
 	    <list> <!-- interceptor 제외할 url list -->
-	    	<value>/landmine/app_start.do</value>   
-	    	<value>/landmine/app_register.do</value>   
-	    	<value>/landmine/joinProcess.do</value>   
-	    	<value>/landmine/idCheckProcess.do</value>   
-	    	
-	    	<value>/landmine/app_login.do</value>   
-	    	<value>/landmine/loginProcess.do</value>   
-	    	<value>/landmine/user/faqDetail.do</value>   
-	    	<value>/landmine/user/noticeDetail.do</value> 
-	    	<value>/landmine/user/faqList.do</value>   
-	    	<value>/landmine/user/noticeList.do</value> 
-	    	<value>/landmine/user/personalInfo.do</value> 
-	    	<value>/landmine/user/serviceInfo.do</value> 
-	    	<value>/landmine/admin/login.do</value>   
-	    	<value>/landmine/admin/loginProcess.do</value>   
+	    	<value>/spgame/app_start.do</value>   
+	    	<value>/spgame/app_register.do</value>   
+	    	<value>/spgame/joinProcess.do</value>   
+	    	<value>/spgame/idCheckProcess.do</value>   
+	    	 
+	    	<value>/spgame/app_login.do</value>   
+	    	<value>/spgame/loginProcess.do</value>   
+	    	<value>/spgame/user/faqDetail.do</value>   
+	    	<value>/spgame/user/noticeDetail.do</value> 
+	    	<value>/spgame/user/faqList.do</value>   
+	    	<value>/spgame/user/noticeList.do</value> 
+	    	<value>/spgame/user/personalInfo.do</value> 
+	    	<value>/spgame/user/serviceInfo.do</value> 
+	    	<value>/spgame/admin/adsqwepmcvsdb.do</value>   
+	    	<value>/spgame/admin/loginProcess.do</value>   
 	    </list>
 	  </property>
 	</bean>      

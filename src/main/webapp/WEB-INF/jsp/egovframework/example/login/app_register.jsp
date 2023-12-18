@@ -28,9 +28,9 @@
 	// CheckPlus(본인인증) 처리 후, 결과 데이타를 리턴 받기위해 다음예제와 같이 http부터 입력합니다.
 	//리턴url은 인증 전 인증페이지를 호출하기 전 url과 동일해야 합니다. ex) 인증 전 url : http://www.~ 리턴 url : http://www.~
 	String sReturnUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ "/landmine/identifyresult.do"; // 성공시 이동될 URL
+			+ "/spgame/identifyresult.do"; // 성공시 이동될 URL
 	String sErrorUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ "/landmine/failresult.do"; // 실패시 이동될 URL
+			+ "/spgame/failresult.do"; // 실패시 이동될 URL
 	// 입력될 plain 데이타를 만든다.
 	String sPlainData = "7:REQ_SEQ" + sRequestNumber.getBytes().length + ":" + sRequestNumber + "8:SITECODE"
 			+ sSiteCode.getBytes().length + ":" + sSiteCode + "9:AUTH_TYPE" + sAuthType.getBytes().length + ":"
@@ -100,12 +100,12 @@
 		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
 	</form>
 	<div class="app_section">
-		<div class="app_logo"><img src="/landmine/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/landmine/webflow/images/logo_shadow_black-p-500.png 500w, /landmine/webflow/images/logo_shadow_black-p-800.png 800w, /landmine/webflow/images/logo_shadow_black-p-1080.png 1080w, /landmine/webflow/images/logo_shadow_black-p-1600.png 1600w, /landmine/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
+		<div class="app_logo"><img src="/spgame/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/spgame/webflow/images/logo_shadow_black-p-500.png 500w, /spgame/webflow/images/logo_shadow_black-p-800.png 800w, /spgame/webflow/images/logo_shadow_black-p-1080.png 1080w, /spgame/webflow/images/logo_shadow_black-p-1600.png 1600w, /spgame/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
 		<div class="mobile_box">
 			<div class="app_screen _2">
 				<div class="app_top">
 					<div class="app_menu_warp">
-						<div class="ap_menu_btn" onclick="location.href='/landmine/app_start.do'">
+						<div class="ap_menu_btn" onclick="location.href='/spgame/app_start.do'">
 							<div class="ap_menu_icon w-embed">
 								<?xml version="1.0" encoding="UTF-8"?>
 								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 14.48 8.83">
@@ -127,7 +127,7 @@
 				</div>
 				<div class="app_content">
 					<div class="system_warp">
-						<img src="/landmine/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/landmine/webflow/images/logo_shadow_black-p-500.png 500w, /landmine/webflow/images/logo_shadow_black-p-800.png 800w, /landmine/webflow/images/logo_shadow_black-p-1080.png 1080w, /landmine/webflow/images/logo_shadow_black-p-1600.png 1600w, /landmine/webflow/images/logo_shadow_black.png 1810w" alt="" class="start_logo">
+						<img src="/spgame/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/spgame/webflow/images/logo_shadow_black-p-500.png 500w, /spgame/webflow/images/logo_shadow_black-p-800.png 800w, /spgame/webflow/images/logo_shadow_black-p-1080.png 1080w, /spgame/webflow/images/logo_shadow_black-p-1600.png 1600w, /spgame/webflow/images/logo_shadow_black.png 1810w" alt="" class="start_logo">
 						<div>가장 안전한 자산관리의 시작</div>
 						<div class="form-block w-form">
 							<form id="joinForm" name="joinForm">
@@ -232,9 +232,9 @@ function signUp(){
 	$.ajax({
 		type : 'post',
 		data : $("#joinForm").serialize(),
-		url : '/landmine/joinProcess.do',
+		url : '/spgame/joinProcess.do',
 		success:function(data){
-			if(data.result == 'suc') location.href = '/landmine/app_password1.do';
+			if(data.result == 'suc') location.href = '/spgame/app_password1.do';
 			else alert(data.msg);
 		}
 	})
@@ -249,7 +249,7 @@ function idCheck(){
 	$.ajax({
 		type : 'post',
 		data : {'id':$("#id").val()},
-		url : '/landmine/idCheckProcess.do',
+		url : '/spgame/idCheckProcess.do',
 		success:function(data){
 			if(data.result == 'suc') alert('사용 가능한 아이디입니다.');
 			else alert(data.msg);

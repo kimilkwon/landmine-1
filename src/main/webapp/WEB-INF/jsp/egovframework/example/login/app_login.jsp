@@ -10,12 +10,12 @@
 </head>
 <body class="app_body">
 	<div class="app_section">
-		<div class="app_logo"><img src="/landmine/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/landmine/webflow/images/logo_shadow_black-p-500.png 500w, /landmine/webflow/images/logo_shadow_black-p-800.png 800w, /landmine/webflow/images/logo_shadow_black-p-1080.png 1080w, /landmine/webflow/images/logo_shadow_black-p-1600.png 1600w, /landmine/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
+		<div class="app_logo"><img src="/spgame/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/spgame/webflow/images/logo_shadow_black-p-500.png 500w, /spgame/webflow/images/logo_shadow_black-p-800.png 800w, /spgame/webflow/images/logo_shadow_black-p-1080.png 1080w, /spgame/webflow/images/logo_shadow_black-p-1600.png 1600w, /spgame/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
 		<div class="mobile_box">
 			<div class="app_screen _2">
 				<div class="app_top">
 					<div class="app_menu_warp">
-						<div class="ap_menu_btn" onclick="location.href='/landmine/app_start.do'">
+						<div class="ap_menu_btn" onclick="location.href='/spgame/app_start.do'">
 							<div class="ap_menu_icon w-embed">
 								<?xml version="1.0" encoding="UTF-8"?>
 								<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 14.48 8.83">
@@ -37,7 +37,7 @@
 				</div>
 				<div class="app_content">
 					<div class="system_warp">
-						<img src="/landmine/webflow/images/logo_shadow_black.png" loading="lazy" style="opacity:1" data-w-id="e5d9f5ed-8fab-f305-5877-e337d3e516e3" srcset="/landmine/webflow/images/logo_shadow_black-p-500.png 500w, /landmine/webflow/images/logo_shadow_black-p-800.png 800w, /landmine/webflow/images/logo_shadow_black-p-1080.png 1080w, /landmine/webflow/images/logo_shadow_black-p-1600.png 1600w, /landmine/webflow/images/logo_shadow_black.png 1810w" sizes="(max-width: 767px) 40vw, 200px" alt="" class="start_logo">
+						<img src="/spgame/webflow/images/logo_shadow_black.png" loading="lazy" style="opacity:1" data-w-id="e5d9f5ed-8fab-f305-5877-e337d3e516e3" srcset="/spgame/webflow/images/logo_shadow_black-p-500.png 500w, /spgame/webflow/images/logo_shadow_black-p-800.png 800w, /spgame/webflow/images/logo_shadow_black-p-1080.png 1080w, /spgame/webflow/images/logo_shadow_black-p-1600.png 1600w, /spgame/webflow/images/logo_shadow_black.png 1810w" sizes="(max-width: 767px) 40vw, 200px" alt="" class="start_logo">
 						<div><spring:message code="login.title" /></div>
 						<div class="form-block w-form">
 							<form id="loginForm" name="loginForm" method="get">
@@ -77,10 +77,10 @@
 function login(){
 	$.ajax({
 		type :'post',
-		url : '/landmine/loginProcess.do',
+		url : '/spgame/loginProcess.do',
 		data : $("#loginForm").serialize(),
 		success:function(data){
-			if(data.result == 'suc') location.href='/landmine/app_password.do';
+			if(data.result == 'suc') location.href='/spgame/app_password.do';
 			else alert(data.msg);
 		}
 	})

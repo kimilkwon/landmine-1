@@ -14,7 +14,7 @@
 	<div id="page-wrapper">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">출금 목록</h1>
+				<h1 class="page-header">배팅리스트</h1>
 			</div>
 		</div>
 		<div class="row">
@@ -22,7 +22,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"></div>
 					<div class="card-body">
-									<form action="/spgame/admin/withdrawList.do"
+									<form action="/spgame/admin/betList.do"
 										name="listForm" id="listForm">
 										<input type="hidden" name="pageIndex" value="1" /> <input
 											type="hidden" name="order" id="order" value="${order}" /> <input
@@ -61,7 +61,7 @@
 										</div>
 										<div class="row">
 											<div class="col-lg-4">
-												<label>승인여부</label>
+												<label>결과여부</label>
 												<div class="form-group input-group">
 													<span class="input-group-btn"> 
 													<input type="hidden"
@@ -69,11 +69,11 @@
 														<button class="btn btn-light btn-icon-split"
 															onclick="checkForm(4)" type="button">전체</button>
 														<button class="btn btn-success btn-sm"
-															onclick="checkForm(0)" type="button">출금 대기</button>
+															onclick="checkForm('win')" type="button">승리</button>
 														<button class="btn btn-primary btn-sm"
-															onclick="checkForm(1)" type="button">출금 완료</button>
+															onclick="checkForm('lose')" type="button">패배</button>
 														<button class="btn btn-danger btn-sm"
-															onclick="checkForm(2)" type="button">출금 미승인</button>
+															onclick="checkForm('adminBoom')" type="button">어드민설정 패배</button>
 													</span>
 												</div>
 											</div>
@@ -97,45 +97,38 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>시간</th>
 											<th>아이디</th>
 											<th>회원명</th>
-											<th>금액</th>
-											<th>상태</th>
-											<th>액션</th>
+											<th>배팅금액</th>
+											<th>거미줄 수</th>
+											<th>당첨금액</th>
+											<th>배팅결과</th>
+											<th>배팅시작시간</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="item" items="${list}">
 											<tr>
-												<td><fmt:formatDate value="${item.mdate}" pattern="yyyy-MM-dd"/></td>
+												
 												<td>${item.id}</td>
 												<td>${item.name}</td>
-												<td><fmt:formatNumber value="${item.money}" pattern="#,###"/></td>
+												<td><fmt:formatNumber value="${item.betMoney}" pattern="#,###"/></span>KRW</td>
+												<td>${item.mineSet}</td>
+												<td>${item.resultMoney}</td>
 												<td>
-													<c:if test="${item.stat eq '0'}"> 대기중</c:if>
-													<c:if test="${item.stat eq '1'}"> 승인</c:if>
-													<c:if test="${item.stat eq '2'}"> 미승인</c:if>
+													<c:if test="${item.result eq 'win'}"> 승리</c:if>
+													<c:if test="${item.result eq 'lose'}"> 패배</c:if>
+													<c:if test="${item.result eq ''}"> 패배</c:if>
+													<c:if test="${item.result eq 'adminBoom'}"> 어드민설정 패배</c:if>
+													<c:if test="${item.result eq 'exit'}">게임중나감</c:if>
 												</td>
-												<td style="width:300px;">
-													<c:if test="${item.stat eq '0'}">
-														<button class="btn btn-primary statBtn ${item.idx}"
-															idx="${item.idx}" type="button"
-															onclick="checkRequest('${item.idx}','1')">출금 승인</button>
-														<button class="btn btn-danger statBtn ${item.idx}"
-															idx="${item.idx}" type="button"
-															onclick="checkRequest('${item.idx}','2')">출금 미승인</button>
-													</c:if>
-												</td>
+												<td><fmt:formatDate value="${item.bdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
 						</div>
-					<form name="listForm" action="/spgame/admin/withdrawList.do">
-						<input type="hidden" name="pageIndex"/>
-					</form>
 			        <div class="row">
 						<div class="col-sm-12" style="text-align:center;">
 							<ul class="pagination">
@@ -198,7 +191,7 @@ function checkRequest(widx, stat) {
 
 	jQuery.ajax({
 		type : "POST",
-		url : "/spgame/admin/withdrawProcess.do?widx=" + widx
+		url : "/spgame/admin/depositProcess.do?widx=" + widx
 		+ "&stat=" + stat,
 		dataType : "json",
 		date : {

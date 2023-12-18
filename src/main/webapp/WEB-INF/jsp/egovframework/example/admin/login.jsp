@@ -36,10 +36,10 @@
 function adminLogin(){
 	$.ajax({
 		type :'post',
-		url : '/landmine/admin/loginProcess.do',
+		url : '/spgame/admin/loginProcess.do',
 		data : $("#adminLoginForm").serialize(),
 		success:function(data){
-			if(data.result == 'suc')location.href='/landmine/admin/member.do';
+			if(data.result == 'suc')location.href='/spgame/admin/member.do';
 			else alert(data.msg);
 		}
 	})

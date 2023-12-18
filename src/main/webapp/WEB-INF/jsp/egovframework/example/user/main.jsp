@@ -23,10 +23,10 @@
     <div class="content">
       <div class="banner">
         <div class="banner_warp">
-          <h1 class="banner_title">Touch Keep</h1>
+          <h1 class="banner_title">Gold Seven</h1>
           <div class="banner_item">
             <div class="banner_item_txt">The more diamond you find on the 5x5 grid, the higher your multiplier. <br>Try not to hit any broken diamond or your game will end!</div>
-            <a href="/landmine/user/game.do" class="banner_btn w-button">게임 시작</a>
+            <a href="/spgame/user/game.do" class="banner_btn w-button">게임 시작</a>
           </div>
         </div>
       </div>
@@ -34,29 +34,29 @@
         <div class="container">
           <div class="main_tem_area">
             <div class="main_item_warp">
-              <div class="main_item"><img src="/landmine/webflow/images//icon_6.svg" loading="lazy" alt="" class="item_img">
+              <div class="main_item"><img src="/spgame/webflow/images//icon_6.svg" loading="lazy" alt="" class="item_img">
                 <h3 class="item_title">Bitcoin Only</h3>
                 <h4 class="item_sub">Transactions are safe, simple and cheap.</h4>
               </div>
-              <div class="main_item"><img src="/landmine/webflow/images//icon_2.svg" loading="lazy" alt="" class="item_img">
+              <div class="main_item"><img src="/spgame/webflow/images//icon_2.svg" loading="lazy" alt="" class="item_img">
                 <h3 class="item_title">Fast Deposits</h3>
                 <h4 class="item_sub">Start playing after 1 confirmation</h4>
               </div>
-              <div class="main_item"><img src="/landmine/webflow/images//icon_3.svg" loading="lazy" alt="" class="item_img">
+              <div class="main_item"><img src="/spgame/webflow/images//icon_3.svg" loading="lazy" alt="" class="item_img">
                 <h3 class="item_title">Provably Fair</h3>
                 <h4 class="item_sub">ine positions are chosen at the start of every round and can be verified after the round ends.</h4>
               </div>
             </div>
             <div class="main_item_warp">
-              <div class="main_item"><img src="/landmine/webflow/images//icon_4.svg" loading="lazy" alt="" class="item_img">
+              <div class="main_item"><img src="/spgame/webflow/images//icon_4.svg" loading="lazy" alt="" class="item_img">
                 <h3 class="item_title">Better Odds</h3>
                 <h4 class="item_sub">Lucky Diamond has considerably better odds than all other bitcoin mine games.</h4>
               </div>
-              <div class="main_item"><img src="/landmine/webflow/images//icon_5.svg" loading="lazy" alt="" class="item_img">
+              <div class="main_item"><img src="/spgame/webflow/images//icon_5.svg" loading="lazy" alt="" class="item_img">
                 <h3 class="item_title">Mobile-Friendly</h3>
                 <h4 class="item_sub">Fun to play on your commute or during boring business meetings.</h4>
               </div>
-              <div class="main_item"><img src="/landmine/webflow/images//icon_1.svg" loading="lazy" alt="" class="item_img">
+              <div class="main_item"><img src="/spgame/webflow/images//icon_1.svg" loading="lazy" alt="" class="item_img">
                 <h3 class="item_title">Mobile Wallet Support</h3>
                 <h4 class="item_sub">Integrated QR Codes make it easy to deposit from your mobile wallet.</h4>
               </div>

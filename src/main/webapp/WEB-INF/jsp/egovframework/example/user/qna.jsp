@@ -31,7 +31,7 @@
             </div>
             <div class="custermer_btnarea">
               <a href="javascript:insert()" class="c_btn w-button">문의등록</a>
-              <a href="/landmine/user/qnaList.do" class="c_btn w-button">목록</a>
+              <a href="/spgame/user/qnaList.do" class="c_btn w-button">목록</a>
             </div>
           </div>
         </div>
@@ -44,13 +44,13 @@
 function insert(){
 	$.ajax({
 		type : 'post',
-		url : '/landmine/user/askInsertProcess.do',
+		url : '/spgame/user/askInsertProcess.do',
 		data : $("#inquryForm").serialize(),
 		success : function(data){
 			var msg = "<spring:message code='contactus.qnasucMsg' />";
 			if(data.result == 'suc'){
 				alert(msg);
-				location.href='/landmine/user/qnaList.do';
+				location.href='/spgame/user/qnaList.do';
 			}
 			else alert(data.msg);
 		}

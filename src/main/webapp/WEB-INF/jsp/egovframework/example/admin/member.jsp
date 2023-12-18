@@ -22,7 +22,7 @@
 				<div class="card shadow mb-4">
 					<div class="card-header py-3"></div>
 					<div class="card-body">
-						   <form action="/landmine/admin/member.do" name="listForm" id="listForm">
+						   <form action="/spgame/admin/member.do" name="listForm" id="listForm">
 								<input type="hidden" name="pageIndex" value="1">
 								<div class="row">
 									<div class="col-lg-4">										
@@ -53,7 +53,7 @@
 									</thead>
 									<tbody>
 										<c:forEach var="item" items="${list}">
-											<tr onclick="location.href='/landmine/admin/memberDetail.do?idx=${item.idx}'" style="cursor:pointer;">
+											<tr onclick="location.href='/spgame/admin/memberDetail.do?idx=${item.idx}'" style="cursor:pointer;">
 												<td>${item.name}</td>
 												<td>${item.id}</td>
 												<td><fmt:formatDate value="${item.mdate}" pattern="yyyy-MM-dd"/></td>
@@ -75,7 +75,7 @@
 								</table>
 							</div>
 						</div>
-					<form name="listForm" action="/landmine/admin/member.do">
+					<form name="listForm" action="/spgame/admin/member.do">
 						<input type="hidden" name="pageIndex"/>
 					</form>
 			        <div class="row">
@@ -106,7 +106,7 @@ function changeIsApproval(idx , kind){
 	if(confirm("변경하시겠습니까")){
 		$.ajax({
 			type : 'get',
-			url : '/landmine/admin/changeIsApproval.do?idx='+idx+'&aprroval='+kind,
+			url : '/spgame/admin/changeIsApproval.do?idx='+idx+'&aprroval='+kind,
 			success:function(data){
 				alert(data.msg);
 				location.reload();

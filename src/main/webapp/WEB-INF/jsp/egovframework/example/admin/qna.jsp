@@ -34,7 +34,7 @@
 									</thead>
 									<tbody>
 										<c:forEach var="item" items="${list}">
-											<tr onclick="location.href='/landmine/admin/qnaDetail.do?idx=${item.idx}'" style="cursor:pointer;">
+											<tr onclick="location.href='/spgame/admin/qnaDetail.do?idx=${item.idx}'" style="cursor:pointer;">
 												<td>${item.idx}</td>
 												<td>${item.title}</td>
 												<td><fmt:formatDate value="${item.qdate}" pattern="yyyy-MM-dd"/></td>
@@ -45,7 +45,7 @@
 								</table>
 							</div>
 						</div>
-					<form name="listForm" action="/landmine/admin/qna.do">
+					<form name="listForm" action="/spgame/admin/qna.do">
 						<input type="hidden" name="pageIndex"/>
 					</form>
 			        <div class="row">

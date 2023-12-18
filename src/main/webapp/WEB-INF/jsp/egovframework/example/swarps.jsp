@@ -17,7 +17,7 @@
 		  <div class="banner_box _2">
 			<div class="banner_txt">
 			  <h1 class="banner_head _2"><spring:message code="swarps.banner1.title" /></h1>
-			</div><img src="/landmine/webflow/images/swarp_header.png" loading="lazy" sizes="(max-width: 991px) 200px, 350px" srcset="/landmine/webflow/images/swarp_header.png 500w, /landmine/webflow/images/swarp_header.png 560w" alt="" class="banner_img _2">
+			</div><img src="/spgame/webflow/images/swarp_header.png" loading="lazy" sizes="(max-width: 991px) 200px, 350px" srcset="/spgame/webflow/images/swarp_header.png 500w, /spgame/webflow/images/swarp_header.png 560w" alt="" class="banner_img _2">
 		  </div>
 		</div>
 		<div class="section2">
@@ -25,15 +25,15 @@
 			<h2 class="main_title"><spring:message code="swarps.banner2.title" /></h2>
 			<div class="main_subtitle"><spring:message code="swarps.banner2.txt" /></div>
 		  </div>
-		  <div class="s_itemwarp"><img src="/landmine/webflow/images/mobile_03.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/landmine/webflow/images/mobile_03.png 500w, /landmine/webflow/images/mobile_03.png 768w" alt="" class="s_item"><img src="/landmine/webflow/images/mobile_04.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/landmine/webflow/images/mobile_04.png 500w, /landmine/webflow/images/mobile_04.png 768w" alt="" class="s_item"><img src="/landmine/webflow/images/mobile_06.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/landmine/webflow/images/mobile_06.png 500w, /landmine/webflow/images/mobile_06.png 768w" alt="" class="s_item"><img src="/landmine/webflow/images/mobile_08.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/landmine/webflow/images/mobile_08.png 500w, /landmine/webflow/images/mobile_08.png 768w" alt="" class="s_item"></div>
+		  <div class="s_itemwarp"><img src="/spgame/webflow/images/mobile_03.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/spgame/webflow/images/mobile_03.png 500w, /spgame/webflow/images/mobile_03.png 768w" alt="" class="s_item"><img src="/spgame/webflow/images/mobile_04.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/spgame/webflow/images/mobile_04.png 500w, /spgame/webflow/images/mobile_04.png 768w" alt="" class="s_item"><img src="/spgame/webflow/images/mobile_06.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/spgame/webflow/images/mobile_06.png 500w, /spgame/webflow/images/mobile_06.png 768w" alt="" class="s_item"><img src="/spgame/webflow/images/mobile_08.png" loading="lazy" sizes="(max-width: 767px) 15vw, (max-width: 991px) 100px, 250px" srcset="/spgame/webflow/images/mobile_08.png 500w, /spgame/webflow/images/mobile_08.png 768w" alt="" class="s_item"></div>
 		</div>
 		<div class="section _2">
 		  <div class="main_txtbox">
 			<h2 class="main_title"><strong><spring:message code="swarps.banner3.title1" /></strong></h2>
 			<div class="main_subtitle"><spring:message code="swarps.banner3.txt1" /></div>
-		  </div><img src="/landmine/webflow/images/swaps_img.svg" loading="lazy" alt="" class="main_img">
+		  </div><img src="/spgame/webflow/images/swaps_img.svg" loading="lazy" alt="" class="main_img">
 		</div>
-		<div class="section _2"><img src="/landmine/webflow/images/Quotes.webp" loading="lazy" sizes="(max-width: 479px) 92vw, 400px" srcset="/landmine/webflow/images/Quotes.webp 500w, /landmine/webflow/images/Quotes.webp 800w, /landmine/webflow/images/Quotes.webp 828w" alt="" class="s_img">
+		<div class="section _2"><img src="/spgame/webflow/images/Quotes.webp" loading="lazy" sizes="(max-width: 479px) 92vw, 400px" srcset="/spgame/webflow/images/Quotes.webp 500w, /spgame/webflow/images/Quotes.webp 800w, /spgame/webflow/images/Quotes.webp 828w" alt="" class="s_img">
 		  <div class="main_txtbox">
 			<h2 class="main_title"><spring:message code="swarps.banner3.title2" /></h2>
 			<div class="main_subtitle"><spring:message code="swarps.banner3.txt2" /></div>
@@ -43,9 +43,9 @@
 		  <div class="main_txtbox">
 			<h2 class="main_title"><spring:message code="swarps.banner3.title3" /></h2>
 			<div class="main_subtitle"><spring:message code="swarps.banner3.txt3" /></div>
-		  </div><img src="/landmine/webflow/images/Approvals.webp" loading="lazy" sizes="(max-width: 479px) 92vw, 400px" srcset="/landmine/webflow/images/Approvals.webp 500w, /landmine/webflow/images/Approvals.webp 800w, /landmine/webflow/images/Approvals.webp 958w" alt="" class="s_img">
+		  </div><img src="/spgame/webflow/images/Approvals.webp" loading="lazy" sizes="(max-width: 479px) 92vw, 400px" srcset="/spgame/webflow/images/Approvals.webp 500w, /spgame/webflow/images/Approvals.webp 800w, /spgame/webflow/images/Approvals.webp 958w" alt="" class="s_img">
 		</div>
-		<div class="section _2"><img src="/landmine/webflow/images/Slippage.webp" loading="lazy" sizes="(max-width: 479px) 92vw, 400px" srcset="/landmine/webflow/images/Slippage.webp 500w, /landmine/webflow/images/Slippage.webp 800w, /landmine/webflow/images/Slippage.webp 880w" alt="" class="s_img">
+		<div class="section _2"><img src="/spgame/webflow/images/Slippage.webp" loading="lazy" sizes="(max-width: 479px) 92vw, 400px" srcset="/spgame/webflow/images/Slippage.webp 500w, /spgame/webflow/images/Slippage.webp 800w, /spgame/webflow/images/Slippage.webp 880w" alt="" class="s_img">
 		  <div class="main_txtbox">
 			<h2 class="main_title"><spring:message code="swarps.banner3.title4" /><br></h2>
 			<div class="main_subtitle"><spring:message code="swarps.banner3.txt4" /></div>
@@ -55,10 +55,10 @@
 		  <h2 class="main_title"><spring:message code="swarps.banner4.title" /></h2>
 		  <div class="main_subtitle"><spring:message code="swarps.banner4.txt" /></div>
 		  <c:if test="${userIdx eq 'null' or empty userIdx }">
-			<a href="/landmine/app_register.do" class="main_btn w-button"><spring:message code="swarps.banner4.btn" /></a>
+			<a href="/spgame/app_register.do" class="main_btn w-button"><spring:message code="swarps.banner4.btn" /></a>
 		</c:if>
 		<c:if test="${userIdx ne 'null' and not empty userIdx}">
-			<a href="/landmine/user/app_mypage.do" class="main_btn w-button"><spring:message code="swarps.banner4.btn" /></a>
+			<a href="/spgame/user/app_mypage.do" class="main_btn w-button"><spring:message code="swarps.banner4.btn" /></a>
 		</c:if>
 		</div>
 	  </div>

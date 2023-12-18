@@ -49,8 +49,8 @@
 							</div>
 						</div>
 						<br>
-						<button type="button" onclick="location.href='/landmine/admin/notice.do'" class="btn btn-primary">목록</button>
-						<button type="button" onclick="location.href='/landmine/admin/noticeUpdate.do?idx=${info.idx}'" class="btn btn-success">수정</button>
+						<button type="button" onclick="location.href='/spgame/admin/notice.do'" class="btn btn-primary">목록</button>
+						<button type="button" onclick="location.href='/spgame/admin/noticeUpdate.do?idx=${info.idx}'" class="btn btn-success">수정</button>
 						<button type="button" onclick="deleteNotice(${info.idx})" class="btn btn-danger">삭제</button>
 					</div>
 				</div>
@@ -65,10 +65,10 @@ function deleteNotice(idx){
 	if(confirm("삭제하시겠습니까? 복구할 수 없습니다")){
 		$.ajax({
 			type : 'post',
-			url : '/landmine/admin/deleteNoticeProcess.do?idx='+idx,
+			url : '/spgame/admin/deleteNoticeProcess.do?idx='+idx,
 			success : function(data){
 				alert(data.msg);
-				if(data.result == 'suc')location.href='/landmine/admin/notice.do';
+				if(data.result == 'suc')location.href='/spgame/admin/notice.do';
 			}
 		})
 	}

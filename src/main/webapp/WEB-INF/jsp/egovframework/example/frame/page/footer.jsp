@@ -6,11 +6,11 @@
 	<div class="footer_warp">
 		<div class="f_logo">
 			<img
-				src="https://assets-global.website-files.com/6552cea403b55036cfb448a4/655301c321c374905b752a4d_logo_white1.svg"
+				src="/spgame/webflow/images/logo_4.png"
 				loading="lazy" alt="" class="logo_img">
 		</div>
 		<div class="copyright">
-			<div>CoptRight by TouchKeep ⓒ All Rights reserved</div>
+			<div>CoptRight by GoldSeven ⓒ All Rights reserved</div>
 		</div>
 	</div>
 </div>
@@ -76,7 +76,7 @@ $(function(){
 		$.ajax({
 			type : 'post',
 			dataType : 'json',
-			url : '/landmine/getWallet.do',
+			url : '/spgame/getWallet.do',
 			success : function(data) {
 				$Money.text(fmtNum(data.money));
 				$("#totalMoney").text(fmtNum(data.money));

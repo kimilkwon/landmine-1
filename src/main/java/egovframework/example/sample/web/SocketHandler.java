@@ -3,6 +3,7 @@ package egovframework.example.sample.web;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.annotation.Resource;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.InitializingBean;
@@ -28,6 +30,7 @@ import egovframework.example.sample.service.impl.Log;
 import egovframework.example.sample.service.impl.SampleDAO;
 import egovframework.example.sample.sise.Coin;
 import egovframework.example.sample.sise.SiseManager;
+import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 
 public class SocketHandler extends TextWebSocketHandler implements InitializingBean {
@@ -40,6 +43,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
     public static SiseManager sise = null;
     public static String exchangeRate = "";
     public static Queue<UserMsg> msgList = new LinkedList<>();
+    public static EgovMap memberTokenMap =new EgovMap();
     
     public static SocketHandler sh;
     public SocketHandler() {  
@@ -57,6 +61,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
     	System.out.println("웹소켓해제");
+    	GameEndSocket(session);
         super.afterConnectionClosed(session, status);
         sessionSet.remove(session);
         this.logger.info("remove session!");
@@ -65,6 +70,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
     	System.out.println("웹소켓연결");
+    	
         super.afterConnectionEstablished(session);
         userConnect(session);
         sessionSet.add(session);
@@ -82,7 +88,9 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
         this.logger.info("receive message:" + message.getPayload());
 
         String msg = "" + message.getPayload();
-
+        synchronized(msgList) {
+            msgList.add(new UserMsg(session,msg));
+        }
         JSONParser p = new JSONParser();
         JSONObject obj = (JSONObject) p.parse(msg);
         
@@ -120,6 +128,8 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
         String protocol = obj.get("protocol").toString();    
         switch(protocol){
             case "login":OnLogin(session, obj); break;
+            case "gameStartUser": GameStart(session, obj); break;
+            case "AdminMineBoom":AdminMineBoom(obj);break;
         }
     }
     public void init(){
@@ -222,8 +232,97 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
             m.put("userIdx", userIdx);
             m.put("game", game);
             
-          
+            String token =""+( (System.currentTimeMillis()+Integer.parseInt(userIdx))%10000);
+            memberTokenMap.put(userIdx, token);
+            JSONObject toObj = new JSONObject();
+            toObj.put("protocol", "requestLoginResult");
+            toObj.put("token", token);
+            toObj.put("userIdx", userIdx);
+            sendMessageToMe(session,toObj);
         } catch (Exception e) {
         }
     }
+	private void GameStart(WebSocketSession session, JSONObject obj){
+        try {
+            JSONObject toObj = new JSONObject();
+            toObj.put("protocol", "gameStart");
+            toObj.put("result", "fail");
+            toObj.put("msg", "요청에 실패했습니다.");
+            Map<String, Object> m = session.getAttributes();
+            m.put("isGame", "gameStart");
+            String userIdx = obj.get("userIdx").toString();
+            String token = obj.get("token").toString();
+            
+            String tokenCheckStr = ""+memberTokenMap.get(userIdx);
+
+            if(!tokenCheckStr.equals(token)){
+            	
+	        	toObj.put("msg", "잘못된 접근입니다.");
+	        	sendMessageToMe(session,toObj);
+	        	
+	        	return;
+            }
+            toObj.put("result", "suc");
+            sendMessageToMe(session,toObj);
+            toObj.put("protocol", "gamelist");
+        	sendMessageAll(toObj);
+        } catch (Exception e) {
+        }
+    }
+	private void GameEnd(WebSocketSession session, JSONObject obj){
+        try {
+            JSONObject toObj = new JSONObject();
+            toObj.put("protocol", "gameStart");
+            toObj.put("result", "fail");
+            toObj.put("msg", "요청에 실패했습니다.");
+         
+            Map<String, Object> m = session.getAttributes();
+            m.put("isGame", "gameEnd");
+            
+            String userIdx = obj.get("userIdx").toString();
+            String token = obj.get("token").toString();
+            
+            String tokenCheckStr = ""+memberTokenMap.get(userIdx);
+
+            if(!tokenCheckStr.equals(token)){
+            	
+	        	toObj.put("msg", "잘못된 접근입니다.");
+	        	sendMessageToMe(session,toObj);
+	        	return;
+            }
+            toObj.put("result", "suc");
+            sendMessageToMe(session,toObj);
+        } catch (Exception e) {
+        }
+    }
+	private void GameEndSocket(WebSocketSession session){
+        try {
+           
+            Map<String, Object> m = session.getAttributes();
+            
+            String userIdx = "" + m.get("userIdx");
+            String isGame = "" + m.get("isGame");
+            if(isGame.equals("gameStart")){
+	            EgovMap in = new EgovMap();
+				in.put("midx", userIdx);
+				sampleDAO.update("updateBetlogEndGame", in);
+            }
+           
+        } catch (Exception e) {
+        }
+    }
+
+	private void AdminMineBoom(JSONObject obj){
+        try {
+        	String userIdx = obj.get("userIdx").toString();
+        	String betIdx = obj.get("betIdx").toString();
+        	EgovMap in = new EgovMap();
+			in.put("midx", userIdx);
+			in.put("betIdx", betIdx);
+			sampleDAO.update("updateBetlogAdminBoom", in);
+        	
+        } catch (Exception e) {
+        }
+    }
+	
 }

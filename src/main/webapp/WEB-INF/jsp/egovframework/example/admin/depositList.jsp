@@ -22,7 +22,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"></div>
 					<div class="card-body">
-									<form action="/landmine/admin/depositList.do"
+									<form action="/spgame/admin/depositList.do"
 										name="listForm" id="listForm">
 										<input type="hidden" name="pageIndex" value="1" /> <input
 											type="hidden" name="order" id="order" value="${order}" /> <input
@@ -133,7 +133,7 @@
 								</table>
 							</div>
 						</div>
-					<form name="listForm" action="/landmine/admin/depositList.do">
+					<form name="listForm" action="/spgame/admin/depositList.do">
 						<input type="hidden" name="pageIndex"/>
 					</form>
 			        <div class="row">
@@ -198,7 +198,7 @@ function checkRequest(widx, stat) {
 
 	jQuery.ajax({
 		type : "POST",
-		url : "/landmine/admin/depositProcess.do?widx=" + widx
+		url : "/spgame/admin/depositProcess.do?widx=" + widx
 		+ "&stat=" + stat,
 		dataType : "json",
 		date : {

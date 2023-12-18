@@ -18,11 +18,11 @@
      <div class="general_content">
         <div class="container">
           <div class="custermer_sc">
-            <h2 class="content_title">문의내역</h2>
+            <h2 class="content_title">고객센터</h2>
             <div class="custermer_title">
-              <h3 class="content_sub">고객센터 리스트</h3>
+              <h3 class="content_sub">문의 리스트</h3>
               <div class="custermer_btnarea">
-                <a href="/landmine/user/qna.do" class="c_btn w-button">문의하기</a>
+                <a href="/spgame/user/qna.do" class="c_btn w-button">문의하기</a>
               </div>
             </div>
             <div class="list_area">
@@ -39,7 +39,7 @@
               </div>
               
               <c:forEach var="item" items="${list}">
-		          	<div class="list_warp" onclick="location.href='/landmine/user/qnaDetail.do?idx=${item.idx}'" style="cursor:pointer;">
+		          	<div class="list_warp" onclick="location.href='/spgame/user/qnaDetail.do?idx=${item.idx}'" style="cursor:pointer;">
 						<div class="list1">
 				            <div class="list_txt">${item.qdate}</div>
 				        </div>
@@ -58,7 +58,7 @@
 			</c:forEach>
 
               </div>
-				<form name="listForm" action="/landmine/user/qnaList.do">
+				<form name="listForm" action="/spgame/user/qnaList.do">
 				  <input type="hidden" name="pageIndex"/>
 				</form>
               <div class="pagging">

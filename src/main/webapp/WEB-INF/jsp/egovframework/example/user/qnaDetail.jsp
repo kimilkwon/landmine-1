@@ -40,7 +40,7 @@
           
             </div>
             <div class="custermer_btnarea">
-              <a href="/landmine/user/qnaList.do" class="c_btn w-button">목록</a>
+              <a href="/spgame/user/qnaList.do" class="c_btn w-button">목록</a>
             </div>
           </div>
         </div>

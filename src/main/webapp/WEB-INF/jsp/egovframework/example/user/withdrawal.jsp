@@ -137,7 +137,7 @@ function withdrawalBtn(){
 	$.ajax({
 		type: 'post',
 		data: data,
-		url:'/landmine/user/withdrawalProcess.do',
+		url:'/spgame/user/withdrawalProcess.do',
 		success: function(data){
 			alert(data.msg);
 			if(data.result == "success"){

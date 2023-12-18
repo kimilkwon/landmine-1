@@ -21,7 +21,7 @@
 </head>
 <body class="app_body">
 	<div class="app_section">
-<div class="app_logo"><img src="/landmine/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/landmine/webflow/images/logo_shadow_black-p-500.png 500w, /landmine/webflow/images/logo_shadow_black-p-800.png 800w, /landmine/webflow/images/logo_shadow_black-p-1080.png 1080w, /landmine/webflow/images/logo_shadow_black-p-1600.png 1600w, /landmine/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
+<div class="app_logo"><img src="/spgame/webflow/images/logo_shadow_black.png" loading="lazy" sizes="(max-width: 767px) 18vw, 100px" srcset="/spgame/webflow/images/logo_shadow_black-p-500.png 500w, /spgame/webflow/images/logo_shadow_black-p-800.png 800w, /spgame/webflow/images/logo_shadow_black-p-1080.png 1080w, /spgame/webflow/images/logo_shadow_black-p-1600.png 1600w, /spgame/webflow/images/logo_shadow_black.png 1810w" alt="" class="logo_img"></div>
 		<div class="mobile_box">
 			<div class="app_screen">
 				<div class="app_top">
@@ -64,23 +64,23 @@
             </div>
             <div class="l_sc2">
               <div class="l_unit">
-              <img src="/landmine/webflow/images/bit_icon.svg" loading="lazy" alt=""
+              <img src="/spgame/webflow/images/bit_icon.svg" loading="lazy" alt=""
 										class="coin_img">
               	${info.btc}<span class="l_unit">BTC</span>
               </div>
               <div class="l_unit">
-              <img src="/landmine/webflow/images/eth_icon.svg" loading="lazy" alt=""
+              <img src="/spgame/webflow/images/eth_icon.svg" loading="lazy" alt=""
 										class="coin_img">
               	${info.eth}<span class="l_unit">ETH</span>
               </div>
               <div class="l_unit" >
-              <img src="/landmine/webflow/images/XRPicon_1XRPicon.png" loading="lazy" alt=""
+              <img src="/spgame/webflow/images/XRPicon_1XRPicon.png" loading="lazy" alt=""
 										class="coin_img">
               	${info.xrp}<span class="l_unit">XRP</span>
               </div>
               
-              <img src="/landmine/webflow/images/low_white.svg" loading="lazy" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" data-w-id="e1162182-e13d-0221-d6fa-05d29d2310e6" alt="" class="lockup_arrow">
-              <div class="lock_iconbox"><img src="/landmine/webflow/images/lockuo_icon.png" loading="lazy" alt="" class="lock_icon"></div>
+              <img src="/spgame/webflow/images/low_white.svg" loading="lazy" style="opacity: 1; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" data-w-id="e1162182-e13d-0221-d6fa-05d29d2310e6" alt="" class="lockup_arrow">
+              <div class="lock_iconbox"><img src="/spgame/webflow/images/lockuo_icon.png" loading="lazy" alt="" class="lock_icon"></div>
             </div>
           </div>
         </div>
@@ -169,7 +169,7 @@ function coinSiseRequest() {
 	$.ajax({
 		type :"post",
 		dataType : "json" ,
-		url : "/landmine/coinSise.do",
+		url : "/spgame/coinSise.do",
 		success:function(data){
 			
 			coinSise[0] = data.BTC;
@@ -185,7 +185,7 @@ function coinWalletRequest() {
 	$.ajax({
 		type :"post",
 		dataType : "json" ,
-		url : "/landmine/user/coinWallet.do",
+		url : "/spgame/user/coinWallet.do",
 		success:function(data){
 			
 			coinWallet[0] = data.BTC;

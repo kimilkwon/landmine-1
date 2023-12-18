@@ -150,7 +150,7 @@ function depositBtn(){
 	$.ajax({
 		type: 'post',
 		data: data,
-		url:'/landmine/user/depositProcess.do',
+		url:'/spgame/user/depositProcess.do',
 		success: function(data){
 			alert(data.msg);
 			if(data.result == "success"){
