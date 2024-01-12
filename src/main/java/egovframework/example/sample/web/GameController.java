@@ -240,7 +240,7 @@ public class GameController {
 		if(Utils.isNull(pageIndex)) pi.setCurrentPageNo(1);
 		else pi.setCurrentPageNo(Integer.parseInt(pageIndex));
 		
-		pi.setRecordCountPerPage(8);
+		pi.setRecordCountPerPage(5);
 		pi.setPageSize(4);
 		
 		EgovMap in = new EgovMap();

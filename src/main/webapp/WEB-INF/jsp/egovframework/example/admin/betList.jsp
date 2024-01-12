@@ -66,14 +66,22 @@
 													<span class="input-group-btn"> 
 													<input type="hidden"
 														name="wstat" id="wstat" value="${wstat}" />
-														<button class="btn btn-light btn-icon-split"
-															onclick="checkForm(4)" type="button">전체</button>
+														<button class="btn btn-light btn-sm"
+															onclick="checkForm(4)" type="button">전체
+														</button>
 														<button class="btn btn-success btn-sm"
-															onclick="checkForm('win')" type="button">승리</button>
+															onclick="checkForm('win')" type="button">승리
+														</button>
+														<button class="btn btn-warning btn-sm"
+															onclick="checkForm('null')" type="button">진행중
+														</button>
 														<button class="btn btn-primary btn-sm"
-															onclick="checkForm('lose')" type="button">패배</button>
+															onclick="checkForm('lose')" type="button">패배
+														</button>
 														<button class="btn btn-danger btn-sm"
-															onclick="checkForm('adminBoom')" type="button">어드민설정 패배</button>
+															onclick="checkForm('adminBoom')" type="button">어드민설정 패배
+														</button>
+														
 													</span>
 												</div>
 											</div>

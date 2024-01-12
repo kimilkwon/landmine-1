@@ -18,10 +18,10 @@
         <div class="container">
           <div class="dw_sc">
             <h2 class="content_title">배팅내역</h2>
-            <div class="form-block w-form">
+            <!--<div class="form-block w-form">
               <form id="email-form" name="email-form" data-name="Email Form" method="get" data-wf-page-id="657a5b0a4cdb24104dba9a66" data-wf-element-id="cda1fbe4-9b7f-f514-566a-17c14d65a50d" aria-label="Email Form">
                 <div class="search_warp">
-                  <!-- <div class="date_warp"><select id="field" name="field" data-name="Field" class="category1 w-select">
+                   <div class="date_warp"><select id="field" name="field" data-name="Field" class="category1 w-select">
                       <option value="">Select one...</option>
                       <option value="First">First choice</option>
                       <option value="Second">Second choice</option>
@@ -29,11 +29,11 @@
                     </select><input type="text" class="date_input w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Example Text" id="field-2" required="">
                     <div>~</div><input type="text" class="date_input w-input" maxlength="256" name="field-2" data-name="Field 2" placeholder="Example Text" id="field-2" required="">
                     <a href="#" class="search_btn w-button">검색</a>
-                  </div> -->
-                </div>
+                  </div>
+                </div> 
               </form>
-            </div>
-          </div>
+            </div>-->
+         </div>
           <div class="history_sc">
             <div class="history_top">
               <div class="h_list1 title">
@@ -69,9 +69,6 @@
 	                	<c:if test="${item.result ne null}">
 	                  		<div>거미줄 위치: ${item.mineLocation}</div>
                   		</c:if>
-                  		<c:if test="${item.mineLocation eq null and item.result eq 'exit'}">
-	                  		<div>거미줄 위치: 탈출로 인한 패배는 거미줄 위치가 기록되지 않습니다.</div>
-                  		</c:if>
 	                </div>
 	                <c:if test="${item.result eq 'win'}">
 	                	<div class="h_list5 btn1 w-button">승리</div>
@@ -96,38 +93,38 @@
 	            </div>
             </c:forEach>
           </div>
-          <form name="listForm" action="/spgame/betList.do">
+          <form name="listForm" action="/spgame/user/betList.do">
 				  <input type="hidden" name="pageIndex"/>
 				</form>
-              <div class="pagging">
+               <div class="pagging">
               
               </div>
-        </div>
-      </div>
-      </div>
-      </div>
-   
+	     </div>
+     </div>
+    </div>
+    </div>
 	<jsp:include page="../frame/page/footer.jsp"></jsp:include>
 	<jsp:include page="../frame/js.jsp"></jsp:include>
 </body>
 
 <script>
-	//<-- 퍼블 script
-	$(".lang_wawrp").hover(
-  		function(){$(this).children(".lang_box").toggleClass("on")
-	});
 
-  	$(".nav_warp").hover(
-		  function(){$(this).children(".top_arrow").toggleClass("on")
-		  	$(this).children(".nav_toggle").toggleClass("on")
-	});
-
-	$('.mobile_menu_btn').hover(function() {
-      	$('.mobile_menupop').css('display', 'flex');
-    });
-	//---->
 	
-	generatePagination();
+$(".lang_wawrp").hover(
+ 		function(){$(this).children(".lang_box").toggleClass("on")
+});
+
+ 	$(".nav_warp").hover(
+	  function(){$(this).children(".top_arrow").toggleClass("on")
+	  	$(this).children(".nav_toggle").toggleClass("on")
+});
+
+$('.mobile_menu_btn').hover(function() {
+     	$('.mobile_menupop').css('display', 'flex');
+   });
+
+generatePagination();
+	
 
   function page(num) {
 	  document.listForm.pageIndex.value = num;
@@ -135,6 +132,7 @@
   }
 
   function generatePagination() {
+	  console.log("ss");
 	  var currentPage = ${page};
 	  var totalPages = ${totalpage};
 	
@@ -145,15 +143,18 @@
 	  if (totalPages == currentPage){
 		  startPage +=1;
 	  }
+	  console.log("startPage:"+startPage);
 	  for (var i = startPage; i <= totalPages; i++) {
+		  console.log("i:"+i);
 		if(i>5) return;
 	  	paginationHTML += '<a href="#" onclick="page(' + i + ')" class="pagging_btn w-button">' + i + '</a>';
 	  }
-	
+	  console.log("totalPages:"+totalPages);
 	  paginationHTML += '<a href="#" onclick="page(' + totalPages + ')" class="pagging_btn w-button">&gt;&gt;</a>';
 	  paginationHTML += '</div>';
 	
 	  $('.pagging').html(paginationHTML);
+	  console.log("ss2");
 	}
 </script>
 </html>
