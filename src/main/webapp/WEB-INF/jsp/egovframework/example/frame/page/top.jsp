@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<a href="/spgame/user/qnaList.do" class="nav_btn w-button">문의내역</a>
-			<a href="/spgame/betList.do" class="nav_btn w-button">배팅내역</a>
+			<a href="/spgame/user/betList.do" class="nav_btn w-button">배팅내역</a>
 			<!--
 			<a href="#" class="nav_btn w-button">공지사항</a>
 			<a href="#" class="nav_btn w-button">고객센터</a>
@@ -69,7 +69,7 @@
 					<br>
 					<div class="m_menu_btnwarp">
 						<a href="/spgame/user/qnaList.do" class="m_menu_btn1 w-inline-block">문의내역</a>
-						<a href="/spgame/betList.do" class="m_menu_btn1 w-inline-block">배팅내역</a>
+						<a href="/spgame/user/betList.do" class="m_menu_btn1 w-inline-block">배팅내역</a>
 					</div>
 				</div>
 			</div> 

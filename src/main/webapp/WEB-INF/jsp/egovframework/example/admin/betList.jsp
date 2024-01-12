@@ -120,6 +120,8 @@
 												<td>
 													<c:if test="${item.result eq 'win'}"> 승리</c:if>
 													<c:if test="${item.result eq 'lose'}"> 패배</c:if>
+													<c:if test="${item.result eq 'null'}"> 게임중</c:if>
+													<c:if test="${item.result eq null}"> 게임중</c:if>
 													<c:if test="${item.result eq ''}"> 패배</c:if>
 													<c:if test="${item.result eq 'adminBoom'}"> 어드민설정 패배</c:if>
 													<c:if test="${item.result eq 'exit'}">게임중나감</c:if>

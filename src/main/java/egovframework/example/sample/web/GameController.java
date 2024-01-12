@@ -230,7 +230,7 @@ public class GameController {
 		
 		
 	}
-	@RequestMapping(value="/betList.do")
+	@RequestMapping(value="/user/betList.do")
 	public String betList(HttpServletRequest request , Model model){
 		String pageIndex = request.getParameter("pageIndex");
 		PaginationInfo pi = new PaginationInfo();
