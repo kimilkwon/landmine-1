@@ -16,7 +16,7 @@
     color:white;
 }
 .input_dw{
-color:black;
+color:white;
 }
 </style>
 
@@ -57,7 +57,7 @@ color:black;
                   <div class="input_warp2">
                     <div class="input_label2">입금신청금액</div>
                     <div class="input_dw_warp">
-                    <input type="text" class="input_dw w-input" maxlength="256" name="totalDeposit" data-name="totalDeposit" placeholder="금액 입력" id="totalDeposit" required="" readonly>
+                    <input type="text" class="input_dw w-input" maxlength="256" name="totalDeposit" data-name="totalDeposit" placeholder="금액 입력" id="totalDeposit" required="" onkeyup="setMoney(this);">
                       <div class="dw_input_btnarea">
                         <a href="#" money="1000" class="dw_input_btn w-button">1천원</a>
                         <a href="#" money="10000" class="dw_input_btn w-button">1만원</a>
@@ -136,15 +136,23 @@ $(".dw_input_btn").click(function() {
 		$("#totalDeposit").val(0);
 	} 
 	else {
-		
 		if(start + parseInt(money)>=0){
-			if (totalMoney >= start + parseInt(money)) {
 				start += parseInt(money);
 				$("#totalDeposit").val((start));
-			}
 		}
-		}
+	}
 });
+function setMoney(){
+    var point = $("#totalDeposit").val();
+    if(!/^[0-9]+$/.test(point)){
+      alert("숫자만 입력해야합니다.")
+      $("#totalDeposit").val('');
+      start =0;
+      return;
+    }
+    start = point;
+    $("#totalDeposit").val((start));
+ }
 function depositBtn(){
 	var data = $("#depositForm").serialize();
 	$.ajax({

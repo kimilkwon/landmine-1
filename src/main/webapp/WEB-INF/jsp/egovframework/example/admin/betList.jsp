@@ -101,6 +101,7 @@
 											<th>회원명</th>
 											<th>배팅금액</th>
 											<th>거미줄 수</th>
+											<th>거미줄 위치</th>
 											<th>당첨금액</th>
 											<th>배팅결과</th>
 											<th>배팅시작시간</th>
@@ -114,6 +115,7 @@
 												<td>${item.name}</td>
 												<td><fmt:formatNumber value="${item.betMoney}" pattern="#,###"/></span>KRW</td>
 												<td>${item.mineSet}</td>
+												<td>${item.mineLocation}</td>
 												<td>${item.resultMoney}</td>
 												<td>
 													<c:if test="${item.result eq 'win'}"> 승리</c:if>

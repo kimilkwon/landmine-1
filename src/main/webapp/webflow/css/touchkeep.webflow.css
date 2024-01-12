@@ -518,6 +518,10 @@
   overflow: hidden;
 }
 
+.nav_toggle.on {
+  display: block;
+}
+
 .toggle_btn {
   width: 100%;
   background-color: var(--transparent);
@@ -1663,7 +1667,7 @@
   .mob_menu_container {
     z-index: 999;
     background-color: var(--black_30);
-    display: none;
+    display: flex;
     position: fixed;
     top: 72px;
     bottom: 0;
@@ -2009,6 +2013,11 @@
   .mob_menu_img {
     width: 4vw;
     height: 4vw;
+  }
+
+  .mob_menu_container {
+    display: flex;
+    top: 14vw;
   }
 
   .mob_exsit {

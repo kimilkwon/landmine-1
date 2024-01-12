@@ -304,6 +304,8 @@ public class AdminBoardController {
 		int idx = Integer.parseInt(""+request.getParameter("idx"));
 		EgovMap info = (EgovMap)sampleDAO.select("selectQnaDetail", idx);
 		model.addAttribute("info", info);
+		model.addAttribute("text", StringEscapeUtils.unescapeHtml3(""+info.get("text")));
+		model.addAttribute("answer", StringEscapeUtils.unescapeHtml3(""+info.get("answer")));
 		return "admin/qnaDetail";
 	}
 	@RequestMapping(value="/qnaDetailUpdate.do")

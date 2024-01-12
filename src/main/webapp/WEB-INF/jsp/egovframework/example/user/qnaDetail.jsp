@@ -26,11 +26,11 @@
                   <div class="q_title_txt">${info.title}<span class="q_date">${info.qdate}</span></div>
                 </div>
                 <div class="q_content">
-                  <div>${info.text}</div>
+                 <pre >${text}&nbsp;</pre>
                 </div>
                 <div class="q_content2">
                 	<c:if test="${info.answer ne null}">
-						<div>답변:${info.answer}</div>
+						<pre>답변:${answer}</pre>
 					</c:if>
 					<c:if test="${info.answer eq null}">
 						<div>답변등록이 되지 않았습니다.</div>

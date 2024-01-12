@@ -71,6 +71,8 @@ function onMessageToWeb(evt) { // 받은 메세지를 보여준다
 					success : function(data) {
 						if (data.result == 'suc') {
 							gameStart();
+							start = 0;
+							$("#betMoney").val(0);
 						} else {
 							alert(data.msg);
 						}
@@ -89,15 +91,23 @@ function doSendToWeb(message) {
 	websocketToWeb.send(message);
 }
 function doSendGameStart(){
-	if(!isGameSend){
+	var point = $("#betMoney").val();
+	console.log("point:"+point );
+    if(!/^[0-9]+$/.test(point)){
+      alert("배팅 입력란에는 숫자만 입력해야합니다.");
+      return;
+    }
+    start = parseInt(point);
+	if(!isGameSend&&!gameIsOpen){
 		let obj = new Object;
 		obj.protocol = "gameStartUser";
 		obj.userIdx = useridx;
 		obj.token = token;
 		doSendToWeb(JSON.stringify(obj));
 	}else{
-		alert("잠시만 기다려주세요.");
+		alert("게임중입니다.");
 	}
+	
 	
 }
 initToWeb();
@@ -112,8 +122,8 @@ initToWeb();
 	var checkBtn = 0;
 	var havemoney = $(".point_span");
 	
-	function endGameSend(result,resultMoney){
-		var newData = { "result" : result,"resultMoney":resultMoney};
+	function endGameSend(){
+		var newData = {};
 		$.ajax({
 			type : 'post',
 			data : newData,
@@ -132,6 +142,7 @@ initToWeb();
 			}
 		})
 	}
+	
 	 
 	$(".lang_wawrp").hover(
 			function(){$(this).children(".lang_box").toggleClass("on")
@@ -161,6 +172,11 @@ initToWeb();
 			$("#betMoney").val(0);
 		} else if(money=="x2"){
 			var total = start*2
+			
+			if(parseInt(totalMoney)<total){
+				alert("보유금액 보다 많이 설정 할 수 없습니다.");
+				return;
+			}
 			start = total;
 			$("#betMoney").val((start));
 		}else if(money=="MIN"){
@@ -172,8 +188,12 @@ initToWeb();
 			$("#betMoney").val((start));
 		}
 		else {
-			
+			if(parseInt(totalMoney)<start + parseInt(money)){
+				alert("보유금액 보다 많이 설정 할 수 없습니다.");
+				return;
+			}
 			if(start + parseInt(money)>=0){
+				
 				if (totalMoney >= start + parseInt(money)) {
 					start += parseInt(money);
 					$("#betMoney").val((start));
@@ -241,8 +261,7 @@ function generateRandomHash() {
 }
 function gameStart(){
 	if(!gameCheck()) return;
-	grid = createGrid();
-    placeMines(grid);
+
 	drawGame();
 	
 	gameIsOpen = true;
@@ -321,8 +340,9 @@ function drawGame(){
 		
 		$("#totalMoney").text(numberWithCommas(parseInt(totalMoney)+parseInt(stakeValue)));
 		$(".point_span").text(numberWithCommas(parseInt(totalMoney)+parseInt(stakeValue)));
-		endGame();
-		endGameSend("win",stakeValue);
+		
+    	endGame();
+    	endGameSend();
 	});
 }
 function logWrite(msg,money,code){
@@ -347,10 +367,9 @@ function logWrite(msg,money,code){
 	}
 	$('.game_content:not(.end) .game_log_warp').prepend(divText);
 }
-function mineCheck($this,check){
+function mineCheck($this,check,mineLocation){
+	const $closestGameContent = $this.closest('.game_content');
 	if(check){
-		const $closestGameContent = $this.closest('.game_content');
-
 		if($closestGameContent.hasClass('end')){
 			logWriteEndGame($closestGameContent);
 	       return;
@@ -358,24 +377,10 @@ function mineCheck($this,check){
 	    const rowIndex = $this.attr("row");
 	    const colIndex = $this.attr("col");
 	    checkBtn++;
-	    if(grid[rowIndex][colIndex].isCheck){
-	    	return;
-	    }
-	    if (grid[rowIndex][colIndex].isMine) {
-	    	
-	    	$this.addClass(" fail");
-	    	logWrite((parseInt(rowIndex))*5+(parseInt(colIndex)+1)+"타일에서 거미줄을 발견했습니다.",0,"error");
-	    	endGame();
-	    	endGameSend("lose",null);
-	    	findMine();
-	    } else {
-	    	$this.addClass(" suc");
-	    	grid[rowIndex][colIndex].isCheck = true;
-	    	nextAndStakeUpdate(rowIndex,colIndex);
-	    }
-	}else{
-		const $closestGameContent = $this.closest('.game_content');
+    	$this.addClass(" suc");
+    	nextAndStakeUpdate(rowIndex,colIndex);
 
+	}else{
 		if($closestGameContent.hasClass('end')){
 			logWriteEndGame($closestGameContent);
 	       return;
@@ -385,8 +390,25 @@ function mineCheck($this,check){
 	    $this.addClass(" fail");
     	logWrite((parseInt(rowIndex))*5+(parseInt(colIndex)+1)+"타일에서 거미줄을 발견했습니다.",0,"error");
     	endGame();
-    	endGameSend("lose",null);
+    	showMine($closestGameContent,mineLocation);
     	findMine();
+	}
+}
+function showMine(target,mineLocation){
+	var mineSet = betCount -1;
+	var mine = mineLocation.split('-');
+	for (var i = 1; i <= 25; i++) {
+	    for (var j = 0; j < mine.length; j++) {
+	        if (parseInt(mine[j]) == i && mineSet>0) {
+	        	var rowIndex = Math.floor((i-1) / 5);
+                var colIndex = (i-1) % 5;
+	        	var $gameBox = target.find('.game_box[row="' + rowIndex + '"][col="' + colIndex + '"]');
+	            if (!$gameBox.hasClass("fail")) {
+	            	mineSet--;
+                    $gameBox.addClass("fail");
+                }
+	        }
+	    }
 	}
 }
 function logWriteEndGame(target){
@@ -406,32 +428,13 @@ function nextAndStakeUpdate(row,col){
 	$('.game_content:not(.end) .score_2 .stake').text(parseInt(stakeValue)+parseInt(nextValue));
 	$('.game_content:not(.end) .score_1 .next').text(Math.floor(nextValue*1.2));
 }
-function createGrid() {
-    const grid = [];
-    for (var i = 0; i < 5; i++) {
-        const row = [];
-        for (var j = 0; j < 5; j++) {
-            row.push({ isMine: false },{ isCheck: false });
-        }
-        grid.push(row);
-    }
-    return grid;
-}
-function placeMines(grid) {
-    const totalMines = betCount; // 지뢰의 개수
-    var minesPlaced = 0;
-    while (minesPlaced < totalMines) {
-        const randomRow = Math.floor(Math.random() * 5);
-        const randomCol = Math.floor(Math.random() * 5);
 
-        if (!grid[randomRow][randomCol].isMine) {
-            grid[randomRow][randomCol].isMine = true;
-            minesPlaced++;
-        }
-    }
-}
 function gameBoxCheck($this){
-        var newData = {};
+	
+		const rowIndex = $this.attr("row");
+	    const colIndex = $this.attr("col");
+		var gameBoxNum = (parseInt(rowIndex))*5+parseInt(colIndex)+1; 
+        var newData = {"gameBoxNum":gameBoxNum};
         $.ajax({
             type: 'post',
             data: newData,
@@ -439,9 +442,22 @@ function gameBoxCheck($this){
             dataType: "json",
             success: function(data) {
                 if (data.result === 'suc') {
-                	mineCheck($this,true);
-                } else {
-                	mineCheck($this,false);
+                	mineCheck($this,true,data.mineLocation);
+                } else if (data.result === 'fail'){
+                	mineCheck($this,false,data.mineLocation);
+                	let obj = new Object;
+					obj.protocol = "gameEndUser";
+					obj.userIdx = useridx;
+					obj.token = token;
+					doSendToWeb(JSON.stringify(obj));
+                }else if(data.result === 'errBetIdxNull'){
+                	var $closestGameContent = $this.closest('.game_content');
+                		if($closestGameContent.hasClass('end')){
+                			logWriteEndGame($closestGameContent);
+                	}
+                }else if(data.result ==='alreadySelect'){
+                	logWrite("이미 선택한 곳 입니다.",0,"")
+                	
                 }
                 
             },

@@ -25,10 +25,13 @@
                 <div class="q_title">
                   <div class="q_title_txt">${info.title}<span class="q_date">${info.ndate}</span></div>
                 </div>
+                </form>
                 <div class="q_content">
-                  <div>${info.text}</div>
+               	 	<div class="form-group">
+                		<pre style="word-break: break-all;">${text}&nbsp;</pre>
+               		</div>
                 </div>
-              </form>
+             
           
             </div>
             <div class="custermer_btnarea">

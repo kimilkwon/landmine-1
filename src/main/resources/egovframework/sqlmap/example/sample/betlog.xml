@@ -12,13 +12,15 @@
 				( midx
 				  , mineSet	
 				  , betMoney
-				  , bdate)
+				  , bdate
+				  , mineLocation)
 			]]>
 		<![CDATA[
 			VALUES ( #midx#
 				  , #mineSet#
 				  , #betMoney#
-				  , now())
+				  , now()
+				  , #mineLocation#)
 			]]>
 		<selectKey keyProperty="idx" resultClass="Integer">
 			SELECT LAST_INSERT_ID()
@@ -28,7 +30,7 @@
 	<update id="updateBetlog">
 		<![CDATA[
 			UPDATE betlog
-			SET result = #result#, resultMoney = #resultMoney#, endDate = now()
+			SET result = #result#, resultMoney = #resultMoney#, endDate = now(),mineLocation = #mineLocation#
 			WHERE midx=#midx# and idx=#betIdx#
 		]]>
 	</update>

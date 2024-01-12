@@ -47,7 +47,7 @@ public class AccessInterceptor extends HandlerInterceptorAdapter {
 			if (session.getAttribute("userIdx") == null) {
 				// 나중에 가입하라는 페이지로 이동시킬예정 \
 				if(!urlArr[3].equals("main.do"))
-					response.sendRedirect("/spgame/user/main.do");
+					response.sendRedirect("/spgame/login.do");
 				else
 					return true;
 				return false;

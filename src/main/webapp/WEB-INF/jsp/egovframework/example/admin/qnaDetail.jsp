@@ -66,7 +66,7 @@
 									<div class="col-lg-6">
 										<div class="form-group">
 											<label>내용</label> 
-											<pre>${info.text}&nbsp;</pre>
+											<pre>${text}&nbsp;</pre>
 										</div>
 									</div>
 								</div>
@@ -81,7 +81,7 @@
 										<c:if test ="${info.cdate ne null }">
 											<div class="form-group">
 												<label>답변 내용</label>
-												<pre>${info.answer}&nbsp;</pre>
+												<pre>${answer}&nbsp;</pre>
 											</div>
 										</c:if>
 									</div>

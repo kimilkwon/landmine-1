@@ -251,6 +251,7 @@ public class BoardController {
 		String useridx = ""+session.getAttribute("userIdx");
 		model.addAttribute("userIdx", useridx);
 		model.addAttribute("text", StringEscapeUtils.unescapeHtml3(""+info.get("text")));
+		model.addAttribute("answer", StringEscapeUtils.unescapeHtml3(""+info.get("answer")));
 		model.addAttribute("info", info);
 		return "user/qnaDetail";
 	}

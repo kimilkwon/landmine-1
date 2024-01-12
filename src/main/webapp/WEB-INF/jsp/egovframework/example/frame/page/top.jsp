@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <div class="top">
 	<div class="top_warp">
 		<a href="/spgame/user/main.do" class="top_logo w-inline-block"><img
@@ -11,13 +12,12 @@
 			<a href="/spgame/user/game.do" class="nav_btn active w-button">게임</a>
 			<a href="/spgame/user/noticeList.do" class="nav_btn w-button">공지사항</a>
 			 <div class="nav_warp">
-				<a href="/spgame/user/deposit.do" class="nav_btn w-button">입금</a>
+				<a href="/spgame/user/deposit.do" class="nav_btn w-button">입출금</a>
 				<div class="nav_toggle">
-					<a href="#" class="toggle_btn w-button">입금</a>
-					<a href="#" class="toggle_btn w-button">출금</a>
+					<a href="/spgame/user/deposit.do" class="toggle_btn w-button">입금</a>
+					<a href="/spgame/user/withdrawal.do" class="toggle_btn w-button">출금</a>
 				</div>
 			</div>
-			<a href="/spgame/user/withdrawal.do" class="nav_btn w-button">출금</a>
 			<a href="/spgame/user/qnaList.do" class="nav_btn w-button">문의내역</a>
 			<a href="/spgame/betList.do" class="nav_btn w-button">배팅내역</a>
 			<!--
@@ -44,49 +44,50 @@
 					<a href="/spgame/join.do" class="regist_btn w-button">회원가입</a>
 				</div>
 			</c:if>
-		
-		<div class="mob_menu">
+		<div class="mob_menu" onclick="mobMenu()">
 			<div class="mob_menu_btn">
 				<img
-					src="/spgame/webflow/images/logo_4.png"
+					src="https://assets-global.website-files.com/6552cea403b55036cfb448a4/655c3a225b32e5086ce2a888_menu2_w.svg"
 					loading="lazy" alt="" class="mob_menu_img">
 			</div>
-			<div class="mob_menu_container">
+			<div class="mob_menu_container" style="display:none;">
 				<div class="mob_exsit"></div>
 				<div class="mob_menu_area">
+					
 					<div class="m_menu_btnwarp">
-						<a href="/spgame/user/game.do" class="m_menu_btn1 w-inline-block"><div>게임</div></a>
+						<a href="/spgame/user/game.do" class="m_menu_btn1 w-inline-block">게임</a><div></div>
 					</div>
+					
 					<div class="m_menu_btnwarp">
-						<a href="/spgame/user/noticeList.do" class="m_menu_btn1 w-inline-block"><div>공지사항</div></a>
+						<a href="/spgame/user/noticeList.do" class="m_menu_btn1 w-inline-block">공지사항</a>
 					</div>
+					<br>
 				 	<div class="m_menu_btnwarp">
-						<a href="/spgame/user/deposit.do" class="m_menu_btn1 w-inline-block"><div>입금</div></a>
-						<a href="/spgame/user/withdrawal.do" class="m_menu_btn1 w-inline-block"><div>출금</div></a>
+						<a href="/spgame/user/deposit.do" class="m_menu_btn1 w-inline-block">입금</a>
+						<a href="/spgame/user/withdrawal.do" class="m_menu_btn1 w-inline-block">출금</a>
 					</div>
+					<br>
 					<div class="m_menu_btnwarp">
 						<a href="/spgame/user/qnaList.do" class="m_menu_btn1 w-inline-block">문의내역</a>
 						<a href="/spgame/betList.do" class="m_menu_btn1 w-inline-block">배팅내역</a>
 					</div>
-					<!--
-					<div class="m_menu_btnwarp">
-						<a href="#" class="m_menu_btn1 w-inline-block"><div>공지사항</div></a>
-					</div>
-					<div class="m_menu_btnwarp">
-						<a href="#" class="m_menu_btn1 w-inline-block"><div>고객센터</div></a>
-					</div>
-					<div class="m_menu_btnwarp">
-						<a href="#" class="m_menu_btn1 w-inline-block"><div>쪽지함</div></a>
-					</div>
-					<div class="m_menu_btnwarp">
-						<a href="#" class="m_menu_btn1 w-inline-block"><div>배팅내역</div></a>
-					</div> -->
-					<!-- <div class="m_menu_btnwarp">
-						<a href="#" class="m_menu_btn1 w-inline-block"><div>마이페이지</div></a>
-					</div> -->
 				</div>
-			</div>
+			</div> 
 		</div>
 	</div>
 </div>
+<script>
 
+$(".nav_warp").hover(
+function(){$(this).children(".nav_toggle").stop().slideToggle(200);});
+
+
+function mobMenu(){
+	if($(".mob_menu_container").css("display")=="none"){
+		$(".mob_menu_container").css("display","flex");
+		
+	}else{
+		$(".mob_menu_container").css("display","none");
+	}
+}
+</script>

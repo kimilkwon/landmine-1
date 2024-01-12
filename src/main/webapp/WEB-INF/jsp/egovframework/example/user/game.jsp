@@ -100,5 +100,5 @@
   </script>
  
   <script src="../js/gameServer.js?v=19" type="text/javascript"></script>
-   <script src="../js/game.js?v=14" type="text/javascript"></script>
+   <script src="../js/game.js?v=40" type="text/javascript"></script>
 </html>

@@ -16,7 +16,7 @@
     color:white;
 }
 .input_dw{
-color:black;
+color:white;
 }
 </style>
 
@@ -44,7 +44,7 @@ color:black;
                   <div class="input_warp2">
                     <div class="input_label2">출금신청금액</div>
                     <div class="input_dw_warp">
-                    <input type="text" class="input_dw w-input" maxlength="256" name="totalWithdrawal" data-name="totalWithdrawal" placeholder="금액 입력" id="totalWithdrawal" required="" readonly>
+                    <input type="text" class="input_dw w-input" maxlength="256" name="totalWithdrawal" data-name="totalWithdrawal" placeholder="금액 입력" id="totalWithdrawal" required="" onkeyup="setMoney(this);">
                       <div class="dw_input_btnarea">
                         <a href="#" money="1000" class="dw_input_btn w-button">1천원</a>
                         <a href="#" money="10000" class="dw_input_btn w-button">1만원</a>
@@ -128,10 +128,33 @@ $(".dw_input_btn").click(function() {
 			if (totalMoney >= start + parseInt(money)) {
 				start += parseInt(money);
 				$("#totalWithdrawal").val((start));
+			}else{
+			   	 	alert("보유금액보다 많은 금액으로 출금신청 할 수 없습니다.");
+			   	 	$("#totalWithdrawal").val('');
+			   	 	start =0;
 			}
 		}
-		}
+	}
 });
+function setMoney(){
+	var totalMoney = numberDeleteCommas($("#totalMoney").text());
+	
+    var point = $("#totalWithdrawal").val();
+    if(!/^[0-9]+$/.test(point)){
+      alert("숫자만 입력해야합니다.")
+      $("#totalWithdrawal").val('');
+      start =0;
+      return;
+    }
+   	if(parseInt(point)>parseInt(totalMoney)){
+   	 	alert("보유금액보다 많은 금액으로 출금신청 할 수 없습니다.");
+   		$("#totalWithdrawal").val('');
+   	 	start =0;
+   	 	return;
+   	}
+    start = point;
+    $("#totalWithdrawal").val((start));
+ }
 function withdrawalBtn(){
 	var data = $("#initForm").serialize();
 	$.ajax({

@@ -37,7 +37,7 @@
 	    	<value>/spgame/joinProcess.do</value>   
 	    	<value>/spgame/idCheckProcess.do</value>   
 	    	 
-	    	<value>/spgame/app_login.do</value>   
+	    	<value>/spgame/login.do</value>   
 	    	<value>/spgame/loginProcess.do</value>   
 	    	<value>/spgame/user/faqDetail.do</value>   
 	    	<value>/spgame/user/noticeDetail.do</value> 

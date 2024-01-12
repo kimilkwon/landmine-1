@@ -65,11 +65,22 @@
 	                <div class="h_list3">
 	                  <div>No.${item.idx}</div>
 	                </div>
+	                <div class="h_list4 on">
+	                	<c:if test="${item.result ne null}">
+	                  		<div>거미줄 위치: ${item.mineLocation}</div>
+                  		</c:if>
+                  		<c:if test="${item.mineLocation eq null and item.result eq 'exit'}">
+	                  		<div>거미줄 위치: 탈출로 인한 패배는 거미줄 위치가 기록되지 않습니다.</div>
+                  		</c:if>
+	                </div>
 	                <c:if test="${item.result eq 'win'}">
 	                	<div class="h_list5 btn1 w-button">승리</div>
 	                </c:if>
-	                <c:if test="${item.result ne 'win'}">
+	                <c:if test="${item.result eq 'lose' or item.result eq 'exit'}">
 	                	<div class="h_list5 btn2 w-button">패배</div>
+	                </c:if>
+	                <c:if test="${item.result eq null}">
+	                	<div class="h_list5 btn2 w-button">진행중</div>
 	                </c:if>
 	                
 	              </div>

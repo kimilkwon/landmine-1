@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="Webflow" name="generator">
-<link href="/spgame/webflow/css/normalize.css?v=13" rel="stylesheet" type="text/css">
-<link href="/spgame/webflow/css/webflow.css?v=13" rel="stylesheet" type="text/css">
-<link href="/spgame/webflow/css/touchkeep.webflow.css?v=10" rel="stylesheet" type="text/css">
+<link href="/spgame/webflow/css/normalize.css?v=14" rel="stylesheet" type="text/css">
+<link href="/spgame/webflow/css/webflow.css?v=14" rel="stylesheet" type="text/css">
+<link href="/spgame/webflow/css/touchkeep.webflow.css?v=15" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
