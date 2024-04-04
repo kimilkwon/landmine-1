@@ -34,8 +34,7 @@
                   <div>날짜</div>
                 </div>
               </div>
-              
-              <c:forEach var="item" items="${list}">
+              	<c:forEach var="item" items="${list}">
 		          	<div class="list_warp" onclick="location.href='/spgame/user/noticeDetail.do?idx=${item.idx}'" style="cursor:pointer;">
 						<div class="list1">
 				            <div class="list_txt">${item.idx}</div>
@@ -47,25 +46,21 @@
 				         <div class="list_txt">${item.ndate}</div>
 				        </div>
 		            </div>
-			</c:forEach>
-
+				</c:forEach>
               </div>
 				<form name="listForm" action="/spgame/user/noticeList.do">
 				  <input type="hidden" name="pageIndex"/>
 				</form>
               <div class="pagging">
-              
               </div>
             </div>
           </div>
         </div> 
       </div>
-      </div>
-   
+    </div>
 	<jsp:include page="../frame/page/footer.jsp"></jsp:include>
 	<jsp:include page="../frame/js.jsp"></jsp:include>
 </body>
-
 <script>
 	//<-- 퍼블 script
 	$(".lang_wawrp").hover(
@@ -104,7 +99,6 @@
 		if(i>5) return;
 	  	paginationHTML += '<a href="#" onclick="page(' + i + ')" class="pagging_btn w-button">' + i + '</a>';
 	  }
-	
 	  paginationHTML += '<a href="#" onclick="page(' + totalPages + ')" class="pagging_btn w-button">&gt;&gt;</a>';
 	  paginationHTML += '</div>';
 	

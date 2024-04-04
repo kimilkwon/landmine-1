@@ -93,7 +93,7 @@
 .footer {
   width: 100%;
   border-top: 1px solid var(--line1);
-  background-color: var(--ui-1);
+  background-color: #3a5951;
   padding: 40px 16px 20px;
 }
 
@@ -108,6 +108,7 @@
   padding-right: 16px;
   display: flex;
   position: relative;
+  background-color:#3a5951;
 }
 
 .container {

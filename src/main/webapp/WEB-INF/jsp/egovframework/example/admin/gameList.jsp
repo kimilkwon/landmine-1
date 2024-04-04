@@ -31,6 +31,7 @@
 											<th>유저이름</th>
 											<th>배팅금액</th>
 											<th>거미줄 설정 수</th>
+											<th>거미줄 위치</th>
 											<th>배팅시작시간</th>
 											<th>액션</th>
 										</tr>
@@ -43,6 +44,7 @@
 												<td>${item.name}</td>
 												<td>${item.betMoney}</td>
 												<td>${item.mineSet}</td>
+												<td>${item.mineLocation}</td>
 												<td><fmt:formatDate value="${item.bdate}" pattern="yyyy-MM-dd"/></td>
 												<td>
 													<button type="button" class="btn btn-info btn-sm pEventSkip" onclick="mineBoom(${item.midx},${item.idx})">지뢰폭발설정</button>

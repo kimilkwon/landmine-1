@@ -6,7 +6,7 @@
 	<div class="footer_warp">
 		<div class="f_logo">
 			<img
-				src="/spgame/webflow/images/logo_4.png"
+				src="/spgame/webflow/images/logo_gold_1.svg"
 				loading="lazy" alt="" class="logo_img">
 		</div>
 		<div class="copyright">

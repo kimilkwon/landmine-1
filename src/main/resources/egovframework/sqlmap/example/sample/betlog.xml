@@ -59,7 +59,7 @@
             SELECT *, betlog.idx betIdx
             FROM betlog
             left join member m on m.idx = betlog.midx 
-            where result IS NULL
+            where result = 'null'
         ]]>
      </select>
      <select id="selectBetlogBoxCheck" resultClass="EgovMap">
