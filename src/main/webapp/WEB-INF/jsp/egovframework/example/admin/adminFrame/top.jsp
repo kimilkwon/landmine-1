@@ -14,7 +14,7 @@
 		<span class="icon-bar"></span> 
 		<span class="icon-bar"></span>
 	</button>
-	<a class="navbar-brand" href="index.html">landmine</a>
+	<a class="navbar-brand" href="index.html">Spendesk</a>
 </div>
 <!-- /.navbar-header -->
 

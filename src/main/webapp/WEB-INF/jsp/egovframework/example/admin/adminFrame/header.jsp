@@ -6,7 +6,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>GoldSeven</title>
+<title>Spendesk</title>
 <link href="/spgame/webflow/images/favicon.png" rel="shortcut icon" type="image/x-icon">
 <link href="/spgame/webflow/images/webclip.png" rel="apple-touch-icon">
 <!-- Bootstrap Core CSS -->

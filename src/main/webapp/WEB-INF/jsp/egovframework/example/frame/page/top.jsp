@@ -6,7 +6,7 @@
 <div class="top">
 	<div class="top_warp">
 		<a href="/spgame/user/main.do" class="top_logo w-inline-block"><img
-			src="/spgame/webflow/images/logo_4.png"
+			src="/spgame/webflow/images/logo_spen_1.svg"
 			loading="lazy" alt="" class="logo_img"></a>
 		<div class="nav_area">
 			<a href="/spgame/user/game.do" class="nav_btn active w-button">게임</a>

@@ -23,7 +23,7 @@
     <div class="content">
       <div class="banner">
         <div class="banner_warp">
-          <h1 class="banner_title">Gold Seven</h1>
+          <h1 class="banner_title">Spendesk</h1>
           <div class="banner_item">
             <div class="banner_item_txt">The more diamond you find on the 5x5 grid, the higher your multiplier. <br>Try not to hit any broken diamond or your game will end!</div>
             <a href="/spgame/user/game.do" class="banner_btn w-button">게임 시작</a>

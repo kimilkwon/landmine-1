@@ -12,7 +12,7 @@
 <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
 <link href="/spgame/webflow/images/favicon.png" rel="shortcut icon" type="image/x-icon">
 <link href="/spgame/webflow/images/webclip.png" rel="apple-touch-icon">
-<title>GoldSeven</title>
+<title>Spendesk</title>
 <style>
 	.app_content::-webkit-scrollbar {display: none;}
 	.app_content {-ms-overflow-style: none;}

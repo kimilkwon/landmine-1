@@ -6,11 +6,11 @@
 	<div class="footer_warp">
 		<div class="f_logo">
 			<img
-				src="/spgame/webflow/images/logo_4.png"
+				src="/spgame/webflow/images/logo_spen_1.svg"
 				loading="lazy" alt="" class="logo_img">
 		</div>
 		<div class="copyright">
-			<div>CoptRight by GoldSeven ⓒ All Rights reserved</div>
+			<div>CoptRight by Spendesk ⓒ All Rights reserved</div>
 		</div>
 	</div>
 </div>

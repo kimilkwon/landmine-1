@@ -13,7 +13,7 @@
 			<span class="icon-bar"></span> 
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="index.html">landmine 관리자 페이지</a>
+		<a class="navbar-brand" href="/spgame/admin/member.do">Spendesk 관리자 페이지</a>
 	</div>
 	<ul class="nav navbar-top-links navbar-right">
 		<li class="dropdown">
