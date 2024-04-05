@@ -157,6 +157,11 @@ public class AdminUserController {
 		String walletpw = request.getParameter("walletpw");
 		String name = request.getParameter("name");
 		
+		String phone = request.getParameter("phone");
+		String mbank = request.getParameter("mbank");
+		String mname = request.getParameter("mname");
+		String maccount = request.getParameter("maccount");
+		
 		JSONObject obj = new JSONObject();
 		obj.put("result", "fail");
 		EgovMap in = new EgovMap();
@@ -181,20 +186,40 @@ public class AdminUserController {
 			return obj.toJSONString();
 		}
 		if(walletpw == null || walletpw.isEmpty()){
-			obj.put("msg", "지갑비밀번호를 입력해주세요.");
+			obj.put("msg", "환전 비밀번호를 입력해주세요.");
 			return obj.toJSONString();
 		}
 		if(walletpw.length()!=6){
 			obj.put("msg", "지갑비밀번호는 6자리입니다. 다시 설정해주세요.");
 			return obj.toJSONString();
 		}
+		if(phone == null || phone.isEmpty()){
+			obj.put("msg", "휴대폰번호를 입력해주세요.");
+			return obj.toJSONString();
+		}
 		if(name == null || name.isEmpty()){
 			obj.put("msg", "이름을 입력해주세요.");
+			return obj.toJSONString();
+		}
+		if(mbank == null || mbank.isEmpty()){
+			obj.put("msg", "은행을 선택해주세요.");
+			return obj.toJSONString();
+		}
+		if(mname == null || mname.isEmpty()){
+			obj.put("msg", "예금주를 입력해주세요.");
+			return obj.toJSONString();
+		}
+		if(maccount == null || maccount.isEmpty()){
+			obj.put("msg", "계좌번호를 입력해주세요.");
 			return obj.toJSONString();
 		}
 		in.put("pw", pw);
 		in.put("walletpw", walletpw);
 		in.put("name", name);
+		in.put("mname", mname);
+		in.put("maccount", maccount);
+		in.put("mbank", mbank);
+		in.put("phone", phone);
 		in.put("idx", idx);
 		
 		sampleDAO.update("updateUserInfo", in);

@@ -20,7 +20,11 @@
 			set id = #id#,
 		 	name = #name#,
 		 	pw = #pw#,
-		 	walletpw = #walletpw#
+		 	walletpw = #walletpw#,
+		 	mbank = #mbank#,
+		 	mname = #mname#,
+		 	maccount = #maccount#,
+		 	phone = #phone#		 	
             where idx = #idx#
         ]]>
 	</update>
