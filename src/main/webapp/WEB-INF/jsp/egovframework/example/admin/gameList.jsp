@@ -8,6 +8,68 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <jsp:include page="adminFrame/header.jsp"></jsp:include>
 </head>
+<style>
+  .game_content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .game_board {
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
+  .game_boardwarp {
+    width: 120%;
+    height: 21%;
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+    flex-direction: column;
+    display: flex;
+  }
+
+  .game_boxwarp {
+    width: 100%;
+    height: 21%;
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+    display: flex;
+    align-items: center; /* 위아래로 가운데 정렬 */
+    justify-content: space-between; /* 위아래로 공백 생성 */
+  }
+
+  .game_box {
+    width: 20%;
+    height: 18px; /* 높이를 70px로 설정하여 위아래 공백을 생성 */
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .game_box:hover {
+    background-image: linear-gradient(to bottom, var(--point1_15), var(--point1_15));
+  }
+
+  .game_box.suc {
+    background-color: forestgreen;
+    align-items: center;
+    text-align-last: center;
+    line-height: 20px;
+    font-size: medium;
+  }
+
+  .game_box.fail {
+    background-color:red;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 75%;
+  }
+</style>
+
 <body>
 <div id="wrapper">
 	<jsp:include page="adminFrame/left.jsp"></jsp:include>
@@ -26,19 +88,36 @@
 								<table class="table table-bordered">
 									<thead>
 										<tr>
+											<th>게임</th>
 											<th>유저번호</th>
 											<th>유저ID</th>
 											<th>유저이름</th>
 											<th>배팅금액</th>
-											<th>거미줄 설정 수</th>
-											<th>거미줄 위치</th>
+											<th>폭탄 설정 수</th>
+											<th>폭탄 위치</th>
 											<th>배팅시작시간</th>
 											<th>액션</th>
 										</tr>
 									</thead>
 									<tbody id="list">
+								
 										<c:forEach var="item" items="${list}">
 											<tr>
+												<td>
+												<div class='game_content' bidx="${item.bidx}" mineLocation="${item.mineLocation}" searchBoxHistory="${item.searchBoxHistory}">
+													<div class='game_left'>
+														<div class='game_board'>	
+															<c:forEach  var="i" begin="1" end="5" >
+																<div class='game_boxwarp'>
+																	<c:forEach  var="j" begin="1" end="5" >
+																		<div class='game_box' num="${5*(i-1) + j}"></div> 
+																	</c:forEach>
+																</div>
+															</c:forEach>
+														</div>
+													</div>
+												</div>
+												</td>
 												<td>${item.midx}</td>
 												<td>${item.id}</td>
 												<td>${item.name}</td>
@@ -47,7 +126,7 @@
 												<td>${item.mineLocation}</td>
 												<td><fmt:formatDate value="${item.bdate}" pattern="yyyy-MM-dd"/></td>
 												<td>
-													<button type="button" class="btn btn-info btn-sm pEventSkip" onclick="mineBoom(${item.midx},${item.idx})">지뢰폭발설정</button>
+													<button type="button" class="btn btn-info btn-sm pEventSkip" onclick="mineBoom(${item.midx},${item.idx})">KILL버튼</button>
 												</td>
 											</tr>
 										</c:forEach>
@@ -68,67 +147,7 @@ function page(num) {
 	document.listForm.pageIndex.value = num;
 	document.listForm.submit();
 }
-const serverport = '<%=request.getServerPort()%>';
-let servername = '<%=request.getServerName()%>';
-let wsUriToWeb = "wss://"+servername+":"+serverport+"/spgame/websocket/echo.do"; //주소 확인!!
-if(servername == "localhost")
-	wsUriToWeb = "ws://"+servername+":"+serverport+"/spgame/websocket/echo.do";
 
-console.log("wsUriToWeb:"+wsUriToWeb);
-
-
-
-let websocketToWeb = null;
-
-function initToWeb() {
-	console.log("initToWeb");
-	websocketToWeb = new WebSocket(wsUriToWeb);
-	websocketToWeb.onopen = function(evt) {
-		console.log("웹소켓접속");
-		onOpenToWeb(evt);
-	};
-
-	websocketToWeb.onmessage = function(evt) {
-		onMessageToWeb(evt);
-	};
-
-	websocketToWeb.onerror = function(evt) {
-		onErrorToWeb(evt);
-	};
-
-	websocketToWeb.onclose = function(evt) {
-		console.log("재접속");
-			initToWeb();
-	};
-}
-function onOpenToWeb(evt) {
-	
-	}
-function onErrorToWeb(evt) {
-	console.log("onErrorToWEb");
-}
-function onMessageToWeb(evt) { // 받은 메세지를 보여준다
-	let wpro = "none";
-	try {
-		let obj = JSON.parse(evt.data);
-		console.log(obj);
-		wpro = obj.protocol;
-		if (obj.protocol == "doLogin") {
-				console.log("접속시도");
-				let obj2 = new Object;
-				obj2.protocol = "loginAdmin";
-				doSendToWeb(JSON.stringify(obj2));
-		}
-		else if(obj.protocol == "gamelist"){
-			setTimeout(function() {location.reload();}, 500);
-		}
-	} catch (err) {
-		console.log("[protocol]" + wpro + " " + err.message);
-	}
-}
-function doSendToWeb(message) {
-	websocketToWeb.send(message);
-}
 
 function mineBoom(userIdx,betIdx){
 	let obj2 = new Object;
@@ -139,6 +158,32 @@ function mineBoom(userIdx,betIdx){
 	setTimeout(function() {location.reload();}, 500);
 }
 
-initToWeb();
+function gamestartAlert(){
+	alert("회원 게임 시작");
+}
+
+$(document).ready(function() {
+    $('.game_content').each(function() {
+        var minelocation = $(this).attr('minelocation');
+        var searchboxhistory = $(this).attr('searchboxhistory');
+        if (minelocation) {
+            var mineNumbers = minelocation.split('-');
+            $.each(mineNumbers, function(index, number) {
+                $(this).find('.game_box[num="' + number + '"]').addClass('fail');
+            }.bind(this)); 
+        }
+        if (searchboxhistory) {
+            var successNumbers = searchboxhistory.split('-');
+            $.each(successNumbers, function(index, number) {
+                $(this).find('.game_box[num="' + number + '"]').addClass('suc');
+            }.bind(this)); 
+        }
+    });
+});
+
+
+function reload(){
+	location.reload();
+}
 </script>
 </html>
