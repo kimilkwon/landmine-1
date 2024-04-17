@@ -337,5 +337,18 @@ public class AdminBoardController {
 		return obj.toJSONString();
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping(value = "/isAllAlarmCheck.do", produces = "application/json; charset=utf8")
+	public String isAllAlarmCheck(HttpServletRequest request) throws Exception {
+		JSONObject obj = new JSONObject();
+		obj.put("result", "fail");
+
+		obj.put("dcnt", (int)sampleDAO.select("selectIsDeposit"));
+		obj.put("wcnt", (int)sampleDAO.select("selectIsWithdraw"));
+		obj.put("newMemCnt", (int)sampleDAO.select("selectNewMemberCnt"));
+		obj.put("askcnt", (int)sampleDAO.select("selectContactCnt"));
+		obj.put("gcnt",(int)sampleDAO.select("selectIsGaming"));
+		obj.put("result", "success");
+		return obj.toJSONString();
+	}
 }

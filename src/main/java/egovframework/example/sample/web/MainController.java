@@ -229,6 +229,7 @@ public class MainController {
 				obj.put("msg", "가입신청이 성공적으로 완료되었습니다");
 				obj.put("login",false);
 				obj.put("protocol", "newMember");
+				SocketHandler.sh.newMember();
 				return obj.toJSONString();
 			}
 		} catch (Exception e) {

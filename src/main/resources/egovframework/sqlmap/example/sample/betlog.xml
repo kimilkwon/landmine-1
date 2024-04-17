@@ -34,13 +34,21 @@
 			WHERE midx=#midx# and idx=#betIdx#
 		]]>
 	</update>
+	
+	<update id="updateBetlogSearchHistory">
+		<![CDATA[
+			UPDATE betlog
+			SET searchBoxHistory = #searchBoxHistory#
+			WHERE midx=#midx# and idx=#betIdx#
+		]]>
+	</update>
 	<update id="updateBetlogEndGame">
 		<![CDATA[
 			UPDATE betlog
 			SET result ='exit'
 			, resultMoney = 0
 			, endDate = now()
-			WHERE midx=#midx# and result IS NULL
+			WHERE midx=#midx# and result = 'null'
 			LIMIT 1;
 		]]>
 	</update>
@@ -50,7 +58,7 @@
 			SET result ='adminBoom'
 			, resultMoney = 0
 			, endDate = now()
-			WHERE midx=#midx# and idx=#betIdx#
+			WHERE midx=#midx# and idx=#betIdx# and result = 'null'
 			LIMIT 1;
 		]]>
 	</update>
@@ -67,6 +75,13 @@
             SELECT *
             FROM betlog
            	WHERE midx=#midx# and idx=#betIdx#
+        ]]>
+     </select>
+      <select id="selectBetlogCheck" resultClass="EgovMap">
+        <![CDATA[
+            SELECT *
+            FROM betlog
+           	WHERE midx=#midx# and result = 'null'
         ]]>
      </select>
      <select id="selectAdminBetlogList" resultClass="EgovMap">

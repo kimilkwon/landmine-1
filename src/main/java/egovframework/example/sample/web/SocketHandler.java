@@ -130,6 +130,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
             case "login":OnLogin(session, obj); break;
             case "gameStartUser": GameStart(session, obj); break;
             case "AdminMineBoom":AdminMineBoom(obj);break;
+            
         }
     }
     public void init(){
@@ -170,7 +171,32 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		};
 		thread.start();
 	}
-
+	  public void qnaInsert(){
+	  	JSONObject robj = new JSONObject();
+	  	robj.put("protocol", "qnaInsert");
+	  	sendMessageAll(robj);
+	  }
+	  public void depositInsert(){
+	  	JSONObject robj = new JSONObject();
+	  	robj.put("protocol", "depositInsert");
+	  	sendMessageAll(robj);
+	  }
+	  public void withdrawalInsert(){
+	  	JSONObject robj = new JSONObject();
+	  	robj.put("protocol", "withdrawalInsert");
+	  	sendMessageAll(robj);
+	  }
+	  public void newMember(){
+	  	JSONObject robj = new JSONObject();
+	  	robj.put("protocol", "newMember");
+	  	sendMessageAll(robj);
+	  }
+	  public void gameEnd(){
+	  	JSONObject robj = new JSONObject();
+	  	robj.put("protocol", "gameEnd");
+	  	sendMessageAll(robj);
+	  }
+  
     private void userConnect(WebSocketSession session){
         System.out.println("유저 접속");
         JSONObject obj=new JSONObject();
@@ -292,6 +318,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
             }
             toObj.put("result", "suc");
             sendMessageToMe(session,toObj);
+            
         } catch (Exception e) {
         }
     }
@@ -306,6 +333,7 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	            EgovMap in = new EgovMap();
 				in.put("midx", userIdx);
 				sampleDAO.update("updateBetlogEndGame", in);
+				gameEnd();
             }
            
         } catch (Exception e) {
