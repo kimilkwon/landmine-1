@@ -80,7 +80,7 @@
   height: 72px;
   min-width: 1280px;
   border-bottom: 1px solid var(--point1_15);
-  background-color: var(--ui-1);
+  background-color: #3a5951;
 }
 
 .content {
