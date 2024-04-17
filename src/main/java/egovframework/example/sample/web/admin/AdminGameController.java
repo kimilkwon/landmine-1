@@ -2,6 +2,8 @@ package egovframework.example.sample.web.admin;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
@@ -37,8 +39,15 @@ public class AdminGameController {
 	@RequestMapping(value="/gameList.do")
 	public String gameList(HttpServletRequest request , Model model){
 		
-		
-		model.addAttribute("list", sampleDAO.list("selectAdminBetlog"));
+		ArrayList<EgovMap> allList = (ArrayList<EgovMap>)sampleDAO.list("selectAdminBetlog");
+		for(int i=0; i<allList.size(); i++){
+			String mine = ""+allList.get(i).get("mineLocation");
+			String searchBox = ""+allList.get(i).get("searchBoxHistory");
+			List<String> list = Arrays.asList(mine.split("-"));
+			allList.get(i).put("mine", list);
+			allList.get(i).put("searchBox", searchBox.split("-"));
+		}
+		model.addAttribute("list", allList);
 		return "admin/gameList";
 	}
 	@RequestMapping(value="/betList.do")

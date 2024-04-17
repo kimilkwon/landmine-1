@@ -74,6 +74,7 @@ color:white;
               </div>
               <div class="general_btn_area">
                 <a href="javascript:depositBtn()" class="general_btn w-button">입금(충전) 신청</a>
+                <a href="/spgame/user/qna.do" class="general_btn w-button">문의하기</a>
               </div>
             </div>
             <div class="dw_box">

@@ -5,6 +5,45 @@
 
 	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias  alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
+	
+	
+	<select id="selectIsGaming" resultClass="int">
+        <![CDATA[
+            SELECT count(*)
+            FROM betlog
+            where result = 'null' and resultMoney is null
+        ]]>
+	</select>
+	<select id="selectIsDeposit" resultClass="int">
+        <![CDATA[
+            SELECT count(*)
+            FROM money
+            where stat = 0 and kind='+'
+        ]]>
+	</select>
+	
+	<select id="selectIsWithdraw" resultClass="int">
+        <![CDATA[
+            SELECT count(*)
+            FROM money
+            where stat = 0 and kind='-'
+        ]]>
+	</select>
+	
+	<select id="selectContactCnt" resultClass="int">
+    	<![CDATA[
+            SELECT count(*)
+            FROM qna
+            where answer is null
+        ]]>
+	</select>
+	<select id="selectNewMemberCnt" resultClass="int">
+        <![CDATA[
+            SELECT count(*)
+            FROM member
+            where isApproval=0 and  isRemove = 0
+        ]]>
+	</select>
 	<select id="selectMemberListCnt" resultClass="int">
         <![CDATA[
             SELECT count(*)

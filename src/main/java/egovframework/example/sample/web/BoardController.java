@@ -14,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import egovframework.example.sample.web.SocketHandler;
 import egovframework.example.sample.service.impl.SampleDAO;
 import egovframework.example.sample.web.util.Utils;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -214,6 +215,8 @@ public class BoardController {
 		in.put("title", title);
 		in.put("midx", session.getAttribute("userIdx"));
 		sampleDAO.insert("insertAsk", in);
+		
+		SocketHandler.sh.qnaInsert();
 		obj.put("result", "suc");
 		return obj.toJSONString();
 	}

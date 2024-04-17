@@ -15,7 +15,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import egovframework.example.sample.web.SocketHandler;
 import egovframework.example.sample.service.impl.SampleDAO;
 import egovframework.example.sample.sise.Coin;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -101,6 +101,7 @@ public class WalletController {
 			sampleDAO.insert("insertMoney",in);
 			obj.put("result", "suc");
 			obj.put("msg", "입금신청이 완료되었습니다.");
+			SocketHandler.sh.depositInsert();
 		}
 		else{
 			obj.put("result", "already");
@@ -117,7 +118,7 @@ public class WalletController {
 		HttpSession session = request.getSession();
 		String useridx = ""+session.getAttribute("userIdx");
 		String money = ""+request.getParameter("totalWithdrawal");
-		
+		String pw = ""+request.getParameter("password");
 
 		EgovMap in = new EgovMap();
 		in.put("useridx", useridx);
@@ -126,6 +127,14 @@ public class WalletController {
 		in.put("kind", "-");
 		in.put("stat", "0");
 		EgovMap info = (EgovMap) sampleDAO.select("selectMemberByIdx", in);
+		
+		String walletpw = ""+info.get("walletpw");
+		
+		if(!walletpw.equals(pw)){
+			obj.put("result", "fail");
+			obj.put("msg", "출금 비밀번호가 맞지 않습니다.");
+			return obj.toJSONString();
+		}
 		
 		int wallet = Integer.parseInt(info.get("money").toString());
 		int withdrawalMoney = Integer.parseInt(money);
@@ -159,6 +168,7 @@ public class WalletController {
 			
 			obj.put("result", "success");
 			obj.put("msg", "출금신청이 완료되었습니다.");
+			SocketHandler.sh.withdrawalInsert();
 			return obj.toJSONString();
 			
 		} catch (Exception e) {

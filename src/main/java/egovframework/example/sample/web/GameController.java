@@ -47,6 +47,14 @@ public class GameController {
 			in.put("useridx", userIdx);
 			in.put("midx", userIdx);
 			in.put("idx", userIdx);
+			
+			EgovMap gameinfo = (EgovMap) sampleDAO.select("selectBetlogCheck", in);
+			if(gameinfo!=null){
+				obj.put("result", "fail");
+				obj.put("msg", "이미 게임 중 입니다.");
+				return obj.toJSONString();
+			}
+			
 			in.put("betMoney", betMoney);
 			in.put("mineSet", mineSet);
 			in.put("mineLocation", mineLocation);
@@ -134,7 +142,7 @@ public class GameController {
 			session.setAttribute("mineLocation", null);
 			session.setAttribute("nextStake", 0);
 			session.setAttribute("searchBoxHistory", 0);
-			
+			SocketHandler.sh.gameEnd();
 			return obj.toJSONString();
 			
 		}catch (Exception e) {
@@ -205,6 +213,9 @@ public class GameController {
 					session.setAttribute("nextStake", nextStake*1.2);
 					session.setAttribute("totalStake", totalStake+nextStake);
 					session.setAttribute("searchBoxHistory", searchBoxHistory);
+					in.put("searchBoxHistory", searchBoxHistory);
+					sampleDAO.update("updateBetlogSearchHistory", in);
+					SocketHandler.sh.gameEnd();
 					return obj.toJSONString();
 				}
 			}else{
@@ -221,6 +232,7 @@ public class GameController {
 			session.setAttribute("mineLocation", null);
 			session.setAttribute("checkCount", 0);
 			session.setAttribute("searchBoxHistory", 0);
+			SocketHandler.sh.gameEnd();
 			return obj.toJSONString();
 			
 		}catch (Exception e) {

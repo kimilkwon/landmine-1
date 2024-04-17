@@ -57,6 +57,12 @@ color:white;
                       </div>
                     </div>
                   </div>
+                  <div class="input_warp2">
+                    <div class="input_label2">출금비밀번호</div>
+                    <div class="input_dw_warp">
+                    <input type="password" class="input_dw w-input" maxlength="256" name="password" data-name="password" placeholder="출금 비밀번호 6자리 입력" id="password" >
+                    </div>
+                  </div>
                 </form>
               </div>
               <div class="general_btn_area">
