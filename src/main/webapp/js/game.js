@@ -245,7 +245,7 @@ function gameCheck(){
 	$("#totalMoney").text(numberWithCommas(totalMoney-start));
 	$(".point_span").text(numberWithCommas(totalMoney-start));
 	
-	setTimeout(function(){logWrite(betCount+"개의 거미줄로  시작금액"+start+"캐시로 시작했습니다.",0,"")},100);
+	setTimeout(function(){logWrite(betCount+"개의 폭탄으로  시작금액"+start+"캐시로 시작했습니다.",0,"")},100);
 	setTimeout(function(){logWrite("암호해쉬값:"+generateRandomHash(),0,"")},100);
 	return true;
 }
@@ -378,6 +378,9 @@ function mineCheck($this,check,mineLocation){
 	    const colIndex = $this.attr("col");
 	    checkBtn++;
     	$this.addClass(" suc");
+    	
+    	var nextValue = $('.game_content:not(.end) .score_1 .next').text();
+    	$this.text("+"+nextValue);
     	nextAndStakeUpdate(rowIndex,colIndex);
 
 	}else{
@@ -388,7 +391,7 @@ function mineCheck($this,check,mineLocation){
 		const rowIndex = $this.attr("row");
 	    const colIndex = $this.attr("col");
 	    $this.addClass(" fail");
-    	logWrite((parseInt(rowIndex))*5+(parseInt(colIndex)+1)+"타일에서 거미줄을 발견했습니다.",0,"error");
+    	logWrite((parseInt(rowIndex))*5+(parseInt(colIndex)+1)+"타일에서 폭탄을 발견했습니다.",0,"error");
     	endGame();
     	showMine($closestGameContent,mineLocation);
     	findMine();
@@ -424,7 +427,7 @@ function findMine(){
 function nextAndStakeUpdate(row,col){
 	var nextValue = $('.game_content:not(.end) .score_1 .next').text();
 	var stakeValue = $('.game_content:not(.end) .score_2 .stake').text();
-	logWrite((parseInt(row))*5+(parseInt(col)+1)+"타일에서 거미를 발견해서",nextValue,"earn");
+	logWrite((parseInt(row))*5+(parseInt(col)+1)+"타일에서 ",nextValue,"earn");
 	$('.game_content:not(.end) .score_2 .stake').text(parseInt(stakeValue)+parseInt(nextValue));
 	$('.game_content:not(.end) .score_1 .next').text(Math.floor(nextValue*1.2));
 }
