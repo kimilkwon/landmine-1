@@ -177,14 +177,15 @@
 }
 
 .game_box.suc {
-  background-image: url('../images/icon_spider.svg'), linear-gradient(to bottom, var(--line1), var(--line1));
-  background-position: 50%, 0 0;
-  background-repeat: no-repeat, repeat;
-  background-size: 75%, auto;
+	background-color: forestgreen;
+	align-items: center; 
+    text-align-last: center;
+    line-height: 70px;
+    font-size: medium;
 }
 
 .game_box.fail {
-  background-image: url('../images/icon_web.svg');
+  background-image: url('../images/icon_boom.svg');
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: 75%;
