@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import egovframework.example.sample.service.impl.SampleDAO;
+import egovframework.example.sample.web.util.GamingUtil;
 import egovframework.example.sample.web.util.MinefieldGenerator;
 import egovframework.example.sample.web.util.Utils;
 import egovframework.rte.psl.dataaccess.util.EgovMap;
@@ -26,7 +27,7 @@ public class GameController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/gameStartProcess.do" , method = RequestMethod.POST ,produces = "application/json; charset=utf8")
-	public String depositProcess(HttpServletRequest request, ModelMap model) throws Exception {
+	public String gameStartProcess(HttpServletRequest request, ModelMap model) throws Exception {
 		JSONObject obj = new JSONObject();
 		obj.put("result", "fail");
 		
@@ -90,6 +91,52 @@ public class GameController {
 		}catch (Exception e) {
 			obj.put("result", "fail");
 			obj.put("msg", "배팅중에 오류가 났습니다.");
+			return obj.toJSONString();
+		}
+		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/gamingProcess.do" , method = RequestMethod.POST ,produces = "application/json; charset=utf8")
+	public String gamingProcess(HttpServletRequest request, ModelMap model) throws Exception {
+		JSONObject obj = new JSONObject();
+		obj.put("result", "fail");
+		try{
+			HttpSession session = request.getSession();
+			String userIdx = ""+session.getAttribute("userIdx");
+			String betIdx = ""+request.getParameter("gameIdx");
+			EgovMap check = new EgovMap();
+			check.put("betIdx", betIdx);
+			check.put("midx", userIdx);
+		
+			EgovMap gameinfo = (EgovMap) sampleDAO.select("selectBetlogBoxCheck", check);
+			
+			int betMoney = Integer.parseInt(gameinfo.get("betMoney").toString());
+			String mineLocation = gameinfo.get("mineLocation").toString();
+			String searchBoxHistory = ""+gameinfo.get("searchBoxHistory");
+			int count = GamingUtil.countNumbers(searchBoxHistory);
+			double nextStake = GamingUtil.getNextStake(count, betMoney);
+			double totalStake = GamingUtil.getTotalStake(count, betMoney);
+		
+			obj.put("result", "suc");
+			session.setAttribute("nextStake", nextStake);
+			session.setAttribute("totalStake", totalStake);
+			session.setAttribute("betIdx", betIdx);
+			session.setAttribute("mineLocation", mineLocation);
+			session.setAttribute("searchBoxHistory", searchBoxHistory);
+			obj.put("betMoney", betMoney);
+			obj.put("nextStake", nextStake);
+			obj.put("totalStake", totalStake);
+			obj.put("searchBoxHistory", searchBoxHistory);
+			if(searchBoxHistory.equals("null")){
+				obj.put("searchBoxHistory", "");
+			}
+			
+			return obj.toJSONString();
+		}catch (Exception e) {
+			obj.put("result", "fail");
+			obj.put("msg", "배팅 불러오는중 오류가 났습니다.");
 			return obj.toJSONString();
 		}
 		
@@ -189,9 +236,11 @@ public class GameController {
 				obj.put("result", "alreadySelect");
 				return obj.toJSONString();
 			}
-			
-			searchBoxHistory = MinefieldGenerator.generateSerchfield(searchBoxHistory,Integer.parseInt(gameBoxNum));
-			
+			if(!searchBoxHistory.equals("null")){
+				searchBoxHistory = MinefieldGenerator.generateSerchfield(searchBoxHistory,Integer.parseInt(gameBoxNum));
+			}else{
+				searchBoxHistory =gameBoxNum+"-";
+			}
 			EgovMap in = new EgovMap();
 			in.put("useridx", userIdx);
 			in.put("midx", userIdx);

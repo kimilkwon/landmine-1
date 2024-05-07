@@ -260,10 +260,24 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
             
             String token =""+( (System.currentTimeMillis()+Integer.parseInt(userIdx))%10000);
             memberTokenMap.put(userIdx, token);
+            
             JSONObject toObj = new JSONObject();
             toObj.put("protocol", "requestLoginResult");
             toObj.put("token", token);
             toObj.put("userIdx", userIdx);
+            toObj.put("gameCheck", "noGame");
+            toObj.put("gameIdx", "0");
+            EgovMap in = new EgovMap();
+            in.put("useridx", userIdx);
+			in.put("midx", userIdx);
+			in.put("idx", userIdx);
+			
+			EgovMap gameinfo = (EgovMap) sampleDAO.select("selectBetlogCheck", in);
+			if(gameinfo!=null){
+				toObj.put("gameCheck", "gaming");
+				toObj.put("gameIdx", gameinfo.get("idx").toString());
+			}
+            
             sendMessageToMe(session,toObj);
         } catch (Exception e) {
         }
@@ -325,16 +339,16 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	private void GameEndSocket(WebSocketSession session){
         try {
            
-            Map<String, Object> m = session.getAttributes();
-            
-            String userIdx = "" + m.get("userIdx");
-            String isGame = "" + m.get("isGame");
-            if(isGame.equals("gameStart")){
-	            EgovMap in = new EgovMap();
-				in.put("midx", userIdx);
-				sampleDAO.update("updateBetlogEndGame", in);
-				gameEnd();
-            }
+//            Map<String, Object> m = session.getAttributes();
+//            
+//            String userIdx = "" + m.get("userIdx");
+//            String isGame = "" + m.get("isGame");
+//            if(isGame.equals("gameStart")){
+//	            EgovMap in = new EgovMap();
+//				in.put("midx", userIdx);
+//				sampleDAO.update("updateBetlogEndGame", in);
+//				gameEnd();
+//            }
            
         } catch (Exception e) {
         }

@@ -184,16 +184,7 @@ function onMessageToWeb(evt) { // 받은 메세지를 보여준다
 				obj2.protocol = "loginAdmin";
 				doSendToWeb(JSON.stringify(obj2));
 		}
-		else if(obj.protocol == "gamelist"){
-			askSound.play();
-			gamestartAlert();
-			allAlarmChek();
-			setTimeout(reload(), 500);
-		}
-		else if(obj.protocol=="gameEnd"){
-			allAlarmChek();
-			setTimeout(reload(), 500);
-		}
+		
 		else if(obj.protocol == "newMember" 
 				||obj.protocol == "qnaInsert"
 					||obj.protocol == "depositInsert"
