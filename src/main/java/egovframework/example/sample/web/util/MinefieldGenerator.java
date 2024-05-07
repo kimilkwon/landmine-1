@@ -65,7 +65,7 @@ public class MinefieldGenerator {
 		  return serchfield;
     }
 	 public static boolean checkSerch(String serchfield, int selectedNumber) {
-		 	if(serchfield.equals("")) return false;
+		 	if(serchfield.equals("")||serchfield.equals("null")) return false;
 	        String[] searchNumbers = serchfield.split("-");
 
 	        for (String searchNumber : searchNumbers) {
