@@ -33,7 +33,7 @@ function initToWeb() {
 }
 function onOpenToWeb(evt) {
 	
-	}
+}
 function onErrorToWeb(evt) {
 	console.log("onErrorToWEb");
 }
@@ -55,7 +55,32 @@ function onMessageToWeb(evt) { // 받은 메세지를 보여준다
 		}
 		else if (obj.protocol == "requestLoginResult"){
 			token = obj.token;
-			console.log("token:"+token);
+			var responseGameCheck = obj.gameCheck;
+			var gameIdx = obj.gameIdx;
+			var newData = { "gameIdx" : gameIdx};
+			if(responseGameCheck == "gaming" && gameIdx != 0){//게임 중인게 있다면 불러오기 
+				$.ajax({
+					type : 'post',
+					data : newData,
+					url : "/spgame/gamingProcess.do",
+					dataType : "json" ,		
+					success : function(data) {
+						if (data.result == 'suc') {
+							console.log("searchBoxHistory:"+data.searchBoxHistory);
+							console.log("nextStake:"+data.nextStake);
+							console.log("totalStake:"+data.totalStake);
+							console.log("betMoney:"+data.betMoney);
+							gamingRestart(data.nextStake,data.totalStake,data.searchBoxHistory,data.betMoney);
+							console.log("게임 불러드리기 성공");
+							start = 0;
+							$("#betMoney").val(0);
+						} else {
+							alert(data.msg);
+						}
+					}
+				})
+			}
+			
 		}
 		else if(obj.protocol == "gameStart"){
 			if(obj.result=="suc"){
@@ -148,15 +173,10 @@ initToWeb();
 			function(){$(this).children(".lang_box").toggleClass("on")
 	  });
   
-	$(".nav_warp").hover(
-			function(){$(this).children(".top_arrow").toggleClass("on")
-				$(this).children(".nav_toggle").toggleClass("on")
-	  });
   
 	  $('.mobile_menu_btn').hover(function() {
 			$('.mobile_menupop').css('display', 'flex');
 	  });
-	  //---->
 	  var start =0;
 	  var betCount =5;
 	  function numberDeleteCommas(x) {
@@ -249,6 +269,15 @@ function gameCheck(){
 	setTimeout(function(){logWrite("암호해쉬값:"+generateRandomHash(),0,"")},100);
 	return true;
 }
+
+function regameCheck(){
+	var totalMoney = numberDeleteCommas($("#totalMoney").text());
+	$("#totalMoney").text(numberWithCommas(totalMoney-start));
+	$(".point_span").text(numberWithCommas(totalMoney-start));
+	
+	setTimeout(function(){logWrite("암호해쉬값:"+generateRandomHash(),0,"")},100);
+	return true;
+}
 function generateRandomHash() {
 	  // 난수를 생성
 	 const randomBytes = new Uint8Array(32); // 32 바이트(256 비트) 크기의 배열
@@ -265,7 +294,15 @@ function gameStart(){
 	drawGame();
 	
 	gameIsOpen = true;
-};
+}
+
+function gamingRestart(nextStake,totalStake,searchBoxHistory,betMoney){
+	if(!regameCheck()) return;
+
+	redrawGame(nextStake,totalStake,searchBoxHistory,betMoney);
+	
+	gameIsOpen = true;
+}
 function endGame(){
 	gameIsOpen = false;
 	$('.game_content').addClass(' end');
@@ -281,6 +318,26 @@ function rolcol(){
 		newElement += "</div>";
 	}
 	return newElement;
+}
+
+function drawBackGame(searchBoxHistory,betMoney){//게임 중인거 불러올때
+	
+	var newElement = "";
+    var searchBox = searchBoxHistory.split('-');
+    
+	for (var i = 1; i <= 25; i++) {
+	    for (var j = 0; j < searchBox.length; j++) {
+	        if (parseInt(searchBox[j]) == i) {
+	        	var rowIndex = Math.floor((i-1) / 5);
+                var colIndex = (i-1) % 5;
+	        	var $gameBox = $('.game_content').find('.game_box[row="' + rowIndex + '"][col="' + colIndex + '"]');
+	            if (!$gameBox.hasClass("suc")) {
+                    $gameBox.addClass("suc");
+                }
+	        }
+	    }
+	}
+	
 }
 function drawGame(){
 	const newChildElement = 
@@ -303,7 +360,67 @@ function drawGame(){
 	                          "<div class='score_title'>STAKE</div>"+"<div class='stake'>"+start+"</div>"+
 	                      "</div>"+
 	                  "</div>"+
-	                  "<a href='#' class='cash_btn w-button'>Cash OUT</a>"+
+	                  "<a class='cash_btn w-button'>Cash OUT</a>"+
+	              "</div>"+
+	              "<div class='game_logbox'>"+
+	                  "<div class='game_log_warp'>"+
+	                  "</div>"+
+	              "</div>"+
+	          "</div>"+
+	      "</div>";
+	
+	  // game 클래스 하위에 자식 요소를 추가
+	  $('.game').prepend(newChildElement);
+	  
+	 
+	  $('.game_box').click(function () {
+	  var $this = $(this);
+	  gameBoxCheck($this);
+	
+	});
+	$('.cash_btn').click( function (){
+		var $closestGameContent = $(this).closest('.game_content');
+		if ($closestGameContent.hasClass('end')) {
+			logWriteEndGame($closestGameContent);
+		   return;
+		}
+		if(checkBtn<=0){
+			logWrite("시작 후 한번이상 배팅해야 합니다.",0,"");
+			return;
+		}
+		var stakeValue = $('.game_content:not(.end) .score_2 .stake').text();
+		var totalMoney = numberDeleteCommas($("#totalMoney").text());
+		
+		logWrite("캐쉬아웃"+numberWithCommas(stakeValue)+"획득",0,"check");
+		
+		$("#totalMoney").text(numberWithCommas(parseInt(totalMoney)+parseInt(stakeValue)));
+		$(".point_span").text(numberWithCommas(parseInt(totalMoney)+parseInt(stakeValue)));
+			endGame();
+			endGameSend();
+	});
+}
+  function redrawGame(nextStake,totalStake,searchBoxHistory,betMoney){
+		const newChildElement = 
+			"<div class='game_content'>"+
+		  "<div class='game_left'>"+
+	             "<div class='game_board'>"+
+	                  "<div class='game_boardwarp'>"+
+	                  rolcol()+
+	                  "</div>"+
+	              "</div>"+
+	          "</div>"+
+	          "<div class='game_info'>"+
+	              "<div class='score_warp'>"+
+	                  "<div class='score_box'>"+
+	                      "<div class='score_1'>"+
+	                          "<div class='score_title'>NEXT</div>"+
+	                          "<div class='next'>"+nextStake+"</div>"+
+	                      "</div>"+
+	                      "<div class='score_2'>"+
+	                          "<div class='score_title'>STAKE</div>"+"<div class='stake'>"+totalStake+"</div>"+
+	                      "</div>"+
+	                  "</div>"+
+	                  "<a class='cash_btn w-button'>Cash OUT</a>"+
 	              "</div>"+
 	              "<div class='game_logbox'>"+
 	                  "<div class='game_log_warp'>"+
@@ -321,18 +438,18 @@ function drawGame(){
 	  gameBoxCheck($this);
 
 	});
-
+	  
+	  drawBackGame(searchBoxHistory,betMoney);
+  
   $('.cash_btn').click( function (){
-	  	
+	  	console.log("!1");
 		var $closestGameContent = $(this).closest('.game_content');
 	    if ($closestGameContent.hasClass('end')) {
 	    	logWriteEndGame($closestGameContent);
+	    	console.log("2222");
 	       return;
 	    }
-	    if(checkBtn<=0){
-	  		logWrite("시작 후 한번이상 배팅해야 합니다.",0,"");
-	  		return;
-	  	}
+	   
 		var stakeValue = $('.game_content:not(.end) .score_2 .stake').text();
 		var totalMoney = numberDeleteCommas($("#totalMoney").text());
 		
@@ -340,11 +457,14 @@ function drawGame(){
 		
 		$("#totalMoney").text(numberWithCommas(parseInt(totalMoney)+parseInt(stakeValue)));
 		$(".point_span").text(numberWithCommas(parseInt(totalMoney)+parseInt(stakeValue)));
-		
+		console.log("3333");
     	endGame();
+    	console.log("4444");
     	endGameSend();
+    	console.log("5555");
 	});
-}
+  }
+
 function logWrite(msg,money,code){
 	var divText = "";
 	if(code==="earn"){
@@ -428,9 +548,17 @@ function nextAndStakeUpdate(row,col){
 	$('.game_content:not(.end) .score_2 .stake').text(parseInt(stakeValue)+parseInt(nextValue));
 	$('.game_content:not(.end) .score_1 .next').text(Math.floor(nextValue*1.2));
 }
-
+function isGameContentEnd($element) {
+    return $element.hasClass('end');
+}
 function gameBoxCheck($this){
 	
+		const $closestGameContent = $this.closest('.game_content');
+	    
+	    if (isGameContentEnd($closestGameContent)) {
+	        logWriteEndGame($closestGameContent);
+	        return;
+	    }
 		const rowIndex = $this.attr("row");
 	    const colIndex = $this.attr("col");
 		var gameBoxNum = (parseInt(rowIndex))*5+parseInt(colIndex)+1; 
@@ -465,4 +593,4 @@ function gameBoxCheck($this){
                 
             }
         });
-}
+	}

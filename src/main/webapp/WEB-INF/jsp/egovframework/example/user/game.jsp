@@ -93,20 +93,10 @@
 	const serverport = '<%=request.getServerPort()%>';
 	let servername = '<%=request.getServerName()%>';
 	
-	console.log("웹소켓1");
-
-	window.addEventListener('beforeunload', function(event) {
-	    // 이벤트 메시지를 설정합니다.
-	    var confirmationMessage = '정말 이 페이지를 나가시겠습니까? 게임이 진행중일 경우 게임에서 패배합니다.';
-
-	    // 브라우저에 메시지를 표시합니다.
-	    event.returnValue = confirmationMessage;
-	    return confirmationMessage;
-	});
+	
 	//<-- 퍼블 script
 	
   </script>
  
-  <script src="../js/gameServer.js?v=22" type="text/javascript"></script>
-   <script src="../js/game.js?v=43" type="text/javascript"></script>
+   <script src="../js/game.js?v=2" type="text/javascript"></script>
 </html>
